@@ -1,15 +1,13 @@
 /**
- * ═══════════════════════════════════════════════════════════════
- * COMMUNITY PAGE - Landing Page for Students & OB/OG
- * ═══════════════════════════════════════════════════════════════
+ * OB/OG PAGE - Landing Page for Alumni (OB/OG)
  *
- * URL: /community
+ * URL: /obog
  *
- * 7-section comprehensive landing page with teal branding:
+ * 7-section landing page with amber/gold branding:
  * 1. Hero with CTA
- * 2. How It Works (3-step student process)
- * 3. Features Grid (expanded to 9 features)
- * 4. Student Testimonials
+ * 2. How It Works (3-step OB/OG process)
+ * 3. Features Grid (6 features)
+ * 4. OB/OG Testimonials
  * 5. Platform Screenshots
  * 6. Universities
  * 7. CTA
@@ -24,57 +22,53 @@ import FeatureCard from "../components/shared/FeatureCard";
 import TestimonialCard from "../components/shared/TestimonialCard";
 import StepCard from "../components/shared/StepCard";
 import ImagePlaceholder from "../components/shared/ImagePlaceholder";
-import { communityFeatures, getTestimonialsByAudience, universities } from "../data/content";
+import { obogFeatures, getTestimonialsByAudience, universities } from "../data/content";
 
-// Filter testimonials for students only
-const studentTestimonials = getTestimonialsByAudience("student");
+const obogTestimonials = getTestimonialsByAudience("obog");
 
-// Simple steps data for community landing page
-const communitySteps = [
+const obogSteps = [
   {
     icon: "📝",
     ja: "無料登録",
     en: "Sign Up Free",
-    jaD: "メールアドレスと大学情報を入力するだけ。クレジットカード不要。",
-    enD: "Just enter your email and university. No credit card required."
-  },
-  {
-    icon: "🔍",
-    ja: "先輩を検索",
-    en: "Search for Senpai",
-    jaD: "業界・企業でフィルタリングして、話を聞きたい先輩を見つけよう。",
-    enD: "Filter by industry and company to find the perfect senpai."
+    jaD: "会社のメールアドレスでアカウントを作成するだけ。2分で完了。",
+    enD: "Just create an account with your company email. Done in 2 minutes.",
   },
   {
     icon: "📅",
-    ja: "訪問を予約",
-    en: "Book a Visit",
-    jaD: "カレンダーから日程を選んで予約。オンライン・対面どちらも対応。",
-    enD: "Pick a date from the calendar. Both online and in-person available."
+    ja: "スケジュール設定",
+    en: "Set Availability",
+    jaD: "対応可能な曜日・時間帯を登録。学生側に通知され、検索で上位表示。",
+    enD: "Register your available days and time slots. Students get notified and you rank higher.",
+  },
+  {
+    icon: "🤝",
+    ja: "後輩と面談",
+    en: "Meet Students",
+    jaD: "学生からの訪問リクエストを承認し、キャリアのアドバイスを共有。",
+    enD: "Approve visit requests from students and share your career insights.",
   },
 ];
 
-// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-// 📄 PAGE COMPONENT
-// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-export default function CommunityPage() {
+export default function ObogPage() {
   return (
     <div style={{ paddingTop: "var(--nav-height)" }}>
+
       {/* ═══════════════════════════════════════════════════════ */}
       {/* SECTION 1: HERO                                          */}
       {/* ═══════════════════════════════════════════════════════ */}
       <HeroSection
-        badge="For Students"
-        headingJa={<>先輩の声が、<br />あなたの<span style={{ color: "var(--color-accent)" }}>道しるべ</span>に。</>}
-        headingEn={<>Let senpai guide your<br />path to a <span style={{ color: "var(--color-accent)" }}>career in Japan</span>.</>}
+        badge="For Alumni"
+        headingJa={<>後輩の未来を、あなたの<br /><span style={{ color: "var(--color-accent)" }}>経験</span>で照らす。</>}
+        headingEn={<>Light the way for future<br />generations with your <span style={{ color: "var(--color-accent)" }}>experience</span>.</>}
         description={{
-          ja: "東大・慶應・早稲田の先輩社会人に、業界のリアルを聞こう。OB/OG訪問を通じて、就活を圧倒的に有利に。",
-          en: "Talk to senpai from Todai, Keio & Waseda about life inside their companies. OB/OG visits give you a real edge in job hunting.",
+          ja: "東大・慶應・早稲田の留学生が、あなたの経験を求めています。OB/OG訪問を通じて、後輩のキャリアを応援しませんか。",
+          en: "International students from Todai, Keio & Waseda want to learn from your experience. Support their careers through OB/OG visits.",
         }}
-        primaryCta={{ href: "/community/signup", ja: "無料で登録する", en: "Sign Up Free" }}
-        secondaryCta={{ href: "/community/login", ja: "ログイン", en: "Log In" }}
-        cardTitle={{ ja: "✨ できること", en: "✨ What you can do" }}
-        cardFeatures={communityFeatures.slice(0, 4)}
+        primaryCta={{ href: "/obog/signup", ja: "OB/OGとして登録", en: "Register as Alumni" }}
+        secondaryCta={{ href: "/obog/login", ja: "ログイン", en: "Log In" }}
+        cardTitle={{ ja: "🎓 OB/OGとしてできること", en: "🎓 What you can do as Alumni" }}
+        cardFeatures={obogFeatures.slice(0, 4)}
       />
 
       {/* ═══════════════════════════════════════════════════════ */}
@@ -84,11 +78,11 @@ export default function CommunityPage() {
         <div className="mx-auto max-w-180">
           <SectionHeader
             title={{ ja: "使い方", en: "How It Works" }}
-            subtitle={{ ja: "3ステップで簡単にOB/OG訪問", en: "3 simple steps to connect with senpai" }}
+            subtitle={{ ja: "3ステップで簡単にOB/OG訪問を始められます", en: "Start receiving OB/OG visits in 3 simple steps" }}
           />
 
           <div className="mt-12 grid gap-8 md:grid-cols-3">
-            {communitySteps.map((step, i) => (
+            {obogSteps.map((step, i) => (
               <StepCard key={i} number={i + 1} step={step} />
             ))}
           </div>
@@ -107,12 +101,12 @@ export default function CommunityPage() {
       <section className="px-6 py-16 md:py-20" style={{ background: "var(--bg2)" }}>
         <div className="mx-auto max-w-275">
           <SectionHeader
-            title={{ ja: "充実の機能", en: "Powerful Features" }}
-            subtitle={{ ja: "就活成功のために必要な機能がすべて揃っています", en: "Everything you need to succeed in your job hunt" }}
+            title={{ ja: "OB/OG向け機能", en: "Alumni Features" }}
+            subtitle={{ ja: "後輩をサポートするために必要な機能がすべて揃っています", en: "Everything you need to support the next generation" }}
           />
 
           <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {communityFeatures.map((feature, i) => (
+            {obogFeatures.map((feature, i) => (
               <FeatureCard key={i} feature={feature} />
             ))}
           </div>
@@ -120,17 +114,17 @@ export default function CommunityPage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════ */}
-      {/* SECTION 4: STUDENT TESTIMONIALS                          */}
+      {/* SECTION 4: OB/OG TESTIMONIALS                            */}
       {/* ═══════════════════════════════════════════════════════ */}
       <section className="px-6 py-16 md:py-20">
         <div className="mx-auto max-w-275">
           <SectionHeader
-            title={{ ja: "先輩学生の声", en: "What Students Say" }}
-            subtitle={{ ja: "Senpai Careerで就活を成功させた学生たちの体験談", en: "Success stories from students who used Senpai Career" }}
+            title={{ ja: "先輩OB/OGの声", en: "What Alumni Say" }}
+            subtitle={{ ja: "Senpai Careerで後輩をサポートしているOB/OGの体験談", en: "Stories from alumni supporting the next generation through Senpai Career" }}
           />
 
           <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {studentTestimonials.map((t, i) => (
+            {obogTestimonials.map((t, i) => (
               <TestimonialCard key={i} testimonial={t} />
             ))}
           </div>
@@ -149,11 +143,11 @@ export default function CommunityPage() {
 
           <div className="mt-12 grid gap-8 md:grid-cols-2">
             <ImagePlaceholder
-              label={{ ja: "先輩検索画面", en: "Senpai Search" }}
+              label={{ ja: "訪問リクエスト管理", en: "Visit Request Management" }}
               aspectRatio="4/3"
             />
             <ImagePlaceholder
-              label={{ ja: "ダッシュボード", en: "Dashboard" }}
+              label={{ ja: "スケジュール管理", en: "Schedule Management" }}
               aspectRatio="4/3"
             />
           </div>
@@ -167,7 +161,7 @@ export default function CommunityPage() {
         <div className="mx-auto max-w-180">
           <SectionHeader
             title={{ ja: "対象大学", en: "Target Universities" }}
-            subtitle={{ ja: "日本トップ3大学の留学生が利用しています", en: "Students from Japan's top 3 universities" }}
+            subtitle={{ ja: "以下の大学の出身者がOB/OGとして登録できます", en: "Graduates from these universities can register as OB/OG" }}
           />
 
           <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
@@ -207,19 +201,19 @@ export default function CommunityPage() {
             style={{ fontFamily: "var(--font-display)", fontSize: "clamp(24px,3vw,32px)" }}
           >
             <T
-              ja="今すぐ先輩とつながろう"
-              en="Connect with senpai today"
+              ja="あなたの経験が、誰かの未来を変える"
+              en="Your experience can change someone's future"
             />
           </h2>
           <p className="mb-8 text-[15px] leading-relaxed" style={{ color: "var(--ink2)" }}>
             <T
-              ja="完全無料。クレジットカード不要。2分で登録完了。"
-              en="Completely free. No credit card required. Sign up in 2 minutes."
+              ja="完全無料。2分で登録完了。後輩の就活を、あなたの力で応援しよう。"
+              en="Completely free. Sign up in 2 minutes. Support the next generation with your experience."
             />
           </p>
           <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-            <Link href="/community/signup" className="btn btn-accent">
-              <T ja="無料で登録する" en="Sign Up Free" />
+            <Link href="/obog/signup" className="btn btn-accent">
+              <T ja="OB/OGとして登録" en="Register as Alumni" />
               <span className="arrow">→</span>
             </Link>
             <Link href="/how-it-works" className="btn btn-ghost">
@@ -229,9 +223,6 @@ export default function CommunityPage() {
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════ */}
-      {/* FOOTER                                                   */}
-      {/* ═══════════════════════════════════════════════════════ */}
       <Footer />
     </div>
   );

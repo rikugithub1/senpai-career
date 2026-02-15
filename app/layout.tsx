@@ -71,7 +71,7 @@ export const metadata: Metadata = {
   description:
     "日本で就職を目指す留学生と日本企業を、OB/OG訪問でつなぐバイリンガルプラットフォーム。",
   icons: {
-    icon: "/icon.png",
+    icon: "/img/transparent/logo.png",
   },
   openGraph: {
     title: "Senpai Career — 留学生のためのOB/OG訪問プラットフォーム",

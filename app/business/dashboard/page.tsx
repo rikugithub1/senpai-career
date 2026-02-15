@@ -1,4 +1,6 @@
+import Link from "next/link";
 import { T } from "../../components/providers/LanguageProvider";
+import { mockOBSlots } from "../../data/content";
 
 /* ── data ── */
 
@@ -50,7 +52,7 @@ export default function BusinessDashboardPage() {
         <h1 className="mb-0.5 text-xl font-bold tracking-tight" style={{ fontFamily: "var(--font-display)" }}>
           <T ja="採用ダッシュボード" en="Recruitment Dashboard" />
         </h1>
-        <p className="text-[12.5px]" style={{ color: "var(--ink3)" }}>business.senpaicareer.com</p>
+        <p className="text-[12.5px]" style={{ color: "var(--ink3)" }}>senpaicareer.com</p>
       </div>
 
       {/* Stats */}
@@ -87,6 +89,63 @@ export default function BusinessDashboardPage() {
               </div>
             ))}
           </div>
+        </div>
+      </div>
+
+      {/* OB Slot Management */}
+      <div className="card mb-3.5">
+        <div className="card-hd">
+          <div className="card-t"><span className="emoji mr-2">🏅</span><T ja="公式OB枠管理" en="Official OB Slot Management" /></div>
+          <Link href="/business/ob-slots" className="card-act"><T ja="全て管理" en="Manage all" /></Link>
+        </div>
+        <div className="card-bd">
+          {/* Summary */}
+          <div className="mb-4 flex items-center gap-3">
+            <div className="text-[13px] font-semibold" style={{ color: "var(--ink2)" }}>
+              <T ja={`${mockOBSlots.filter(s => s.status === "active").length}/${mockOBSlots.length} 枠使用中`} en={`${mockOBSlots.filter(s => s.status === "active").length}/${mockOBSlots.length} slots in use`} />
+            </div>
+            <div className="flex-1">
+              <div className="prog-track"><div className="prog-fill" style={{ width: `${(mockOBSlots.filter(s => s.status === "active").length / mockOBSlots.length) * 100}%` }} /></div>
+            </div>
+          </div>
+          {/* Slot list */}
+          {mockOBSlots.map((slot) => (
+            <div key={slot.id} className="flex items-center gap-2.5 border-b py-2.5 last:border-b-0" style={{ borderColor: "var(--brd2)" }}>
+              <div className="flex h-5 w-5 items-center justify-center rounded text-[10px] font-bold" style={{ background: "var(--bg3)", color: "var(--ink4)" }}>
+                {slot.id}
+              </div>
+              {slot.obog ? (
+                <>
+                  <div className="av av-sm" style={{ background: "var(--accent-soft)", color: "var(--color-accent)" }}>{slot.obog.initials}</div>
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center gap-1.5 text-[13px] font-semibold">
+                      {slot.obog.name}
+                      <span className="badge-verified"><T ja="公式OB" en="Verified" /></span>
+                    </div>
+                    <div className="text-[10.5px]" style={{ color: "var(--ink3)" }}><T ja={slot.obog.ja} en={slot.obog.en} /></div>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-[10.5px]" style={{ color: "var(--ink4)" }}>
+                      <T ja={`〜${slot.rotationEnd}`} en={`until ${slot.rotationEnd}`} />
+                    </div>
+                    {slot.rotationEnd && new Date(slot.rotationEnd) <= new Date("2026-02-16") ? (
+                      <span className="tag tag-yellow"><T ja="入替可能" en="Swap ready" /></span>
+                    ) : (
+                      <span className="tag tag-green"><T ja="アクティブ" en="Active" /></span>
+                    )}
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="av av-sm" style={{ background: "var(--bg3)", color: "var(--ink4)" }}>—</div>
+                  <div className="min-w-0 flex-1 text-[13px]" style={{ color: "var(--ink4)" }}>
+                    <T ja="空き枠" en="Vacant slot" />
+                  </div>
+                  <button className="btn btn-sm btn-ghost"><T ja="割り当て" en="Assign" /></button>
+                </>
+              )}
+            </div>
+          ))}
         </div>
       </div>
 

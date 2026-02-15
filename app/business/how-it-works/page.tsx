@@ -19,8 +19,6 @@ import Link from "next/link";
 export default function BusinessHowItWorksPage() {
   return (
     <div style={{ paddingTop: "var(--nav-height)" }}>
-      {/* Navy branding applied by business layout */}
-
       <PageContainer maxWidth="275">
         <section className="px-6 py-16 md:py-20">
           <div className="mx-auto max-w-275">
@@ -30,7 +28,7 @@ export default function BusinessHowItWorksPage() {
               style={{ fontFamily: "var(--font-mono)", color: "var(--color-accent)" }}
             >
               <span className="inline-block h-[1.5px] w-4" style={{ background: "var(--color-accent)" }} />
-              business.senpaicareer.com
+              How It Works
             </div>
 
             <SectionHeader

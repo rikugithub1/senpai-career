@@ -3,7 +3,7 @@ import AuthSidePanel from "./AuthSidePanel";
 
 interface AuthLayoutProps {
   children: ReactNode;
-  type: "community" | "business";
+  type: "community" | "business" | "obog";
 }
 
 /**

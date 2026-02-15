@@ -24,6 +24,7 @@ interface UserInfo {
   readonly en: string;
   readonly jaRole: string;
   readonly enRole: string;
+  readonly verified?: boolean;
 }
 
 export interface SidebarProps {
@@ -90,8 +91,9 @@ export default function DashboardSidebar({
           {user.initials}
         </div>
         <div>
-          <div className="text-[13px] font-semibold">
+          <div className="flex items-center gap-1.5 text-[13px] font-semibold">
             <T ja={user.ja} en={user.en} />
+            {user.verified && <span className="badge-verified">✓</span>}
           </div>
           <div className="text-[11px]" style={{ color: "var(--ink3)" }}>
             <T ja={user.jaRole} en={user.enRole} />

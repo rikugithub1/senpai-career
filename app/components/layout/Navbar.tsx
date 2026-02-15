@@ -11,13 +11,13 @@ interface NavLink {
   readonly href: string;
   readonly ja: string;
   readonly en: string;
-  readonly external?: boolean; // Opens in new tab if true
 }
 
 const links: readonly NavLink[] = [
   { href: "/", ja: "ホーム", en: "Home" },
   { href: "/community", ja: "学生の方", en: "For Students" },
-  { href: "/business", ja: "企業の方", en: "For Companies", external: true }, // Will open in new tab
+  { href: "/obog", ja: "OB/OGの方", en: "For Alumni" },
+  { href: "/business", ja: "企業の方", en: "For Companies" },
   { href: "/how-it-works", ja: "使い方", en: "How It Works" },
   { href: "/pricing", ja: "料金", en: "Pricing" },
   { href: "/faq", ja: "FAQ", en: "FAQ" },
@@ -33,6 +33,8 @@ export default function Navbar() {
   // Determine current section for branding
   const section = path.startsWith("/business")
     ? "business"
+    : path.startsWith("/obog")
+    ? "obog"
     : path.startsWith("/community")
     ? "community"
     : undefined;
@@ -71,8 +73,6 @@ export default function Navbar() {
             <Link
               key={l.href}
               href={l.href}
-              target={l.external ? "_blank" : undefined}
-              rel={l.external ? "noopener noreferrer" : undefined}
               className="rounded-lg px-4 py-2 text-[13px] transition-all"
               style={{
                 fontWeight: isActive(l.href) ? 600 : 500,
@@ -126,15 +126,14 @@ export default function Navbar() {
           {/* Auth — hide on dashboard, context-aware */}
           {!isDash && (() => {
             const isBusiness = path.startsWith("/business");
-            const loginHref = isBusiness ? "/business/login" : "/community/login";
-            const signupHref = isBusiness ? "/business/signup" : "/community/signup";
+            const isObog = path.startsWith("/obog");
+            const loginHref = isBusiness ? "/business/login" : isObog ? "/obog/login" : "/community/login";
+            const signupHref = isBusiness ? "/business/signup" : isObog ? "/obog/signup" : "/community/signup";
 
             return (
               <>
                 <Link
                   href={loginHref}
-                  target={isBusiness ? "_blank" : undefined}
-                  rel={isBusiness ? "noopener noreferrer" : undefined}
                   className="hidden rounded-lg border px-4 py-2 text-xs font-semibold transition-all md:inline-flex"
                   style={{ borderColor: "var(--brd)", color: "var(--ink2)" }}
                   onMouseEnter={(e) => (e.currentTarget.style.background = "var(--bg-hover)")}
@@ -144,8 +143,6 @@ export default function Navbar() {
                 </Link>
                 <Link
                   href={signupHref}
-                  target={isBusiness ? "_blank" : undefined}
-                  rel={isBusiness ? "noopener noreferrer" : undefined}
                   className="hidden rounded-lg px-4 py-2 text-xs font-semibold text-white transition-all hover:opacity-90 md:inline-flex"
                   style={{ background: "var(--color-accent)" }}
                 >
@@ -191,8 +188,6 @@ export default function Navbar() {
               <Link
                 key={l.href}
                 href={l.href}
-                target={l.external ? "_blank" : undefined}
-                rel={l.external ? "noopener noreferrer" : undefined}
                 onClick={() => setOpen(false)}
                 className="rounded-lg px-4 py-2.5 text-sm font-medium transition-all"
                 style={{ color: "var(--ink2)" }}
@@ -205,15 +200,14 @@ export default function Navbar() {
             <hr className="my-2" style={{ borderColor: "var(--brd)" }} />
             {(() => {
               const isBusiness = path.startsWith("/business");
-              const loginHref = isBusiness ? "/business/login" : "/community/login";
-              const signupHref = isBusiness ? "/business/signup" : "/community/signup";
+              const isObog = path.startsWith("/obog");
+              const loginHref = isBusiness ? "/business/login" : isObog ? "/obog/login" : "/community/login";
+              const signupHref = isBusiness ? "/business/signup" : isObog ? "/obog/signup" : "/community/signup";
 
               return (
                 <>
                   <Link
                     href={loginHref}
-                    target={isBusiness ? "_blank" : undefined}
-                    rel={isBusiness ? "noopener noreferrer" : undefined}
                     onClick={() => setOpen(false)}
                     className="rounded-lg px-4 py-2.5 text-sm font-semibold"
                     style={{ color: "var(--color-accent)" }}
@@ -222,8 +216,6 @@ export default function Navbar() {
                   </Link>
                   <Link
                     href={signupHref}
-                    target={isBusiness ? "_blank" : undefined}
-                    rel={isBusiness ? "noopener noreferrer" : undefined}
                     onClick={() => setOpen(false)}
                     className="rounded-lg px-4 py-2.5 text-sm font-semibold"
                     style={{ color: "var(--color-accent)" }}

@@ -15,7 +15,6 @@ export default function BusinessLayout({
 }) {
   return (
     <div data-section="business">
-      {/* Business branding applied to page content */}
       {children}
     </div>
   );

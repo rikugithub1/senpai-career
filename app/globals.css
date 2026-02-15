@@ -112,6 +112,21 @@
   --accent-soft2: rgba(67, 56, 202, 0.24);
 }
 
+/* OB/OG (Alumni) - Amber/Gold */
+.obog-colors,
+[data-section="obog"] {
+  --color-accent: #d97706;
+  --color-accent-hover: #b45309;
+  --accent-soft: rgba(217, 119, 6, 0.08);
+  --accent-soft2: rgba(217, 119, 6, 0.16);
+}
+
+[data-theme="dark"] .obog-colors,
+[data-theme="dark"] [data-section="obog"] {
+  --accent-soft: rgba(217, 119, 6, 0.14);
+  --accent-soft2: rgba(217, 119, 6, 0.24);
+}
+
 /* ============================================
    RESET & BASE
    ============================================ */
@@ -124,7 +139,7 @@
   html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    overflow-y: scroll;
+    overflow-y: auto;
     scroll-behavior: smooth;
     scrollbar-gutter: stable;
   }
@@ -216,13 +231,15 @@
     transform: translateY(-1px);
   }
   .btn-ghost {
-    border: 1px solid var(--brd);
-    color: var(--ink2);
-    background: var(--bg-el);
+    border: 1px solid var(--color-accent);
+    color: var(--color-accent);
+    background: transparent;
   }
   .btn-ghost:hover {
-    border-color: var(--ink4);
-    color: var(--ink);
+    background: var(--accent-soft);
+    border-color: var(--color-accent-hover);
+    color: var(--color-accent-hover);
+    transform: translateY(-1px);
   }
   .btn-sm {
     padding: 6px 14px;
@@ -261,6 +278,25 @@
   .tag-accent {
     background: var(--accent-soft2);
     color: var(--color-accent);
+  }
+
+  .tag-verified {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    color: #fff;
+    font-weight: 700;
+  }
+
+  .badge-verified {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    padding: 1px 7px;
+    font-size: 10px;
+    font-weight: 700;
+    border-radius: 4px;
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    color: #fff;
+    vertical-align: middle;
   }
 
   /* --- SECTION LABEL --- */

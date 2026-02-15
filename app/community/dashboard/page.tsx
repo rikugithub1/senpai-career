@@ -44,7 +44,7 @@ export default function CommunityDashboardPage() {
         <h1 className="mb-0.5 text-xl font-bold tracking-tight" style={{ fontFamily: "var(--font-display)" }}>
           <T ja="おかえりなさい、Chenさん 👋" en="Welcome back, Chen 👋" />
         </h1>
-        <p className="text-[12.5px]" style={{ color: "var(--ink3)" }}>app.senpaicareer.com</p>
+        <p className="text-[12.5px]" style={{ color: "var(--ink3)" }}>senpaicareer.com</p>
       </div>
 
       {/* Schedule */}

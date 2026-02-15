@@ -40,6 +40,12 @@ const bizFeats = [
   { ja: "候補者管理＆メッセージ機能", en: "Candidate management & messaging" },
 ];
 
+const obogFeats = [
+  { ja: "学生からの訪問リクエストを簡単管理", en: "Easily manage visit requests from students" },
+  { ja: "スケジュールをカレンダーで設定", en: "Set your availability on a calendar" },
+  { ja: "キャリアアドバイスで後輩をサポート", en: "Support juniors with career advice" },
+];
+
 /* ── helpers ── */
 
 function Dot() {
@@ -81,8 +87,9 @@ export default function LandingPage() {
           </p>
 
           <div className="flex flex-col items-center justify-center gap-2.5 sm:flex-row">
-            <Link href="/community" className="btn btn-accent"><T ja="学生・OB/OGの方はこちら" en="For Students and OB/OG (Alumni)" /><span className="arrow">→</span></Link>
-            <Link href="/business" className="btn btn-ghost"><T ja="企業の方はこちら" en="For Companies" /></Link>
+            <Link href="/community" data-section="community" className="btn btn-accent"><T ja="学生の方はこちら" en="For Students" /><span className="arrow">→</span></Link>
+            <Link href="/obog" data-section="obog" className="btn btn-accent"><T ja="OB/OGの方はこちら" en="For Alumni" /><span className="arrow">→</span></Link>
+            <Link href="/business" data-section="business" className="btn btn-accent"><T ja="企業の方はこちら" en="For Companies" /><span className="arrow">→</span></Link>
           </div>
         </div>
       </section>
@@ -113,12 +120,11 @@ export default function LandingPage() {
               <T ja="あなたに合った入り口から" en="Choose your entry point" />
             </h2>
           </div>
-          <div className="grid gap-6 md:grid-cols-2">
+          <div className="grid gap-6 md:grid-cols-3">
             {/* Student */}
-            <Link href="/community" className="group overflow-hidden rounded-[14px] border transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[var(--shadow-md)]" style={{ borderColor: "var(--brd)", background: "var(--card)" }}>
-              <div className="border-b px-6 pb-5 pt-7" style={{ borderColor: "var(--brd)", background: "var(--bg2)" }}>
-                <div className="mb-2.5 flex items-center gap-1.5 text-[11px]" style={{ fontFamily: "var(--font-mono)", color: "var(--ink3)" }}><Dot />app.senpaicareer.com</div>
-                <div className="text-lg font-bold tracking-tight" style={{ fontFamily: "var(--font-display)" }}><T ja="🎒 学生・OB/OG向け" en="🎒 For Students & OB/OG (Alumni)" /></div>
+            <Link href="/community" data-section="community" className="group overflow-hidden rounded-[14px] border transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[var(--shadow-md)]" style={{ borderColor: "var(--brd)", background: "var(--card)" }}>
+              <div className="border-b px-6 pb-5 pt-7" style={{ borderColor: "var(--brd)", background: "var(--accent-soft)" }}>
+                <div className="text-lg font-bold tracking-tight" style={{ fontFamily: "var(--font-display)", color: "var(--color-accent)" }}><T ja="🎒 学生向け" en="🎒 For Students" /></div>
                 <div className="mt-1 text-[12.5px]" style={{ color: "var(--ink3)" }}><T ja="OB/OG検索・予約・就活ガイド" en="Search, book visits, career guides" /></div>
               </div>
               <div className="flex flex-col gap-2.5 px-6 py-5">
@@ -131,11 +137,26 @@ export default function LandingPage() {
               </div>
             </Link>
 
+            {/* OB/OG */}
+            <Link href="/obog" data-section="obog" className="group overflow-hidden rounded-[14px] border transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[var(--shadow-md)]" style={{ borderColor: "var(--brd)", background: "var(--card)" }}>
+              <div className="border-b px-6 pb-5 pt-7" style={{ borderColor: "var(--brd)", background: "var(--accent-soft)" }}>
+                <div className="text-lg font-bold tracking-tight" style={{ fontFamily: "var(--font-display)", color: "var(--color-accent)" }}><T ja="🎓 OB/OG（先輩社会人）向け" en="🎓 For Alumni (OB/OG)" /></div>
+                <div className="mt-1 text-[12.5px]" style={{ color: "var(--ink3)" }}><T ja="訪問リクエスト管理・スケジュール設定" en="Manage requests, set your schedule" /></div>
+              </div>
+              <div className="flex flex-col gap-2.5 px-6 py-5">
+                {obogFeats.map((f, i) => (
+                  <div key={i} className="flex items-center gap-2 text-[13px]" style={{ color: "var(--ink2)" }}><Dot /><T ja={f.ja} en={f.en} /></div>
+                ))}
+              </div>
+              <div className="px-6 pb-6 text-[13px] font-semibold" style={{ fontFamily: "var(--font-display)", color: "var(--color-accent)" }}>
+                <T ja="詳しく見る →" en="Learn more →" />
+              </div>
+            </Link>
+
             {/* Biz */}
-            <Link href="/business" className="group overflow-hidden rounded-[14px] border transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[var(--shadow-md)]" style={{ borderColor: "var(--brd)", background: "var(--card)" }}>
-              <div className="border-b px-6 pb-5 pt-7" style={{ borderColor: "var(--brd)", background: "var(--bg2)" }}>
-                <div className="mb-2.5 flex items-center gap-1.5 text-[11px]" style={{ fontFamily: "var(--font-mono)", color: "var(--ink3)" }}><Dot />business.senpaicareer.com</div>
-                <div className="text-lg font-bold tracking-tight" style={{ fontFamily: "var(--font-display)" }}><T ja="🏢 企業向け" en="🏢 For Companies" /></div>
+            <Link href="/business" data-section="business" className="group overflow-hidden rounded-[14px] border transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[var(--shadow-md)]" style={{ borderColor: "var(--brd)", background: "var(--card)" }}>
+              <div className="border-b px-6 pb-5 pt-7" style={{ borderColor: "var(--brd)", background: "var(--accent-soft)" }}>
+                <div className="text-lg font-bold tracking-tight" style={{ fontFamily: "var(--font-display)", color: "var(--color-accent)" }}><T ja="🏢 企業向け" en="🏢 For Companies" /></div>
                 <div className="mt-1 text-[12.5px]" style={{ color: "var(--ink3)" }}><T ja="採用管理・OB社員管理・分析" en="Recruitment, OB management, analytics" /></div>
               </div>
               <div className="flex flex-col gap-2.5 px-6 py-5">
@@ -178,8 +199,9 @@ export default function LandingPage() {
             <T ja="登録は無料。あなたのキャリアの第一歩を、先輩と一緒に。" en="Sign up for free. Take your first career step with senpai by your side." />
           </p>
           <div className="flex flex-col items-center justify-center gap-2.5 sm:flex-row">
-            <Link href="/community" className="btn btn-accent"><T ja="学生・OB/OGの方" en="For Students & OB/OG" /><span className="arrow">→</span></Link>
-            <Link href="/business" className="btn btn-ghost"><T ja="企業の方" en="For Companies" /></Link>
+            <Link href="/community" data-section="community" className="btn btn-accent"><T ja="学生の方" en="For Students" /><span className="arrow">→</span></Link>
+            <Link href="/obog" data-section="obog" className="btn btn-accent"><T ja="OB/OGの方" en="For Alumni" /><span className="arrow">→</span></Link>
+            <Link href="/business" data-section="business" className="btn btn-accent"><T ja="企業の方" en="For Companies" /><span className="arrow">→</span></Link>
           </div>
         </div>
       </section>

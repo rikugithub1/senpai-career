@@ -13,7 +13,7 @@ import PageContainer from "../../components/shared/PageContainer";
 import SectionHeader from "../../components/shared/SectionHeader";
 import FAQAccordion from "../../components/shared/FAQAccordion";
 import { T } from "../../components/providers/LanguageProvider";
-import { businessFeatures, talentPoolStats } from "../../data/content";
+import { businessFeatures, talentPoolStats, obSlotTiers } from "../../data/content";
 import Link from "next/link";
 
 export default function BusinessPricingPage() {
@@ -53,6 +53,20 @@ export default function BusinessPricingPage() {
       aE: "Setup typically takes about 1 week from sign-up. Our dedicated team will support your onboarding.",
       category: "companies" as const
     },
+    {
+      q: "公式OB枠とは何ですか？",
+      qE: "What are Official OB Slots?",
+      a: "公式OB枠は、自社のOB/OGを「公式認証」するための枠です。認証されたOB/OGは学生の検索結果で公式バッジが表示され、信頼度が向上します。2カ月ごとに担当の入替が可能です。",
+      aE: "Official OB Slots let you verify your company's OB/OG. Verified alumni display an official badge in student search results, boosting trust. You can rotate assigned members every 2 months.",
+      category: "companies" as const
+    },
+    {
+      q: "OB枠の担当入替はどのように行いますか？",
+      qE: "How does OB slot rotation work?",
+      a: "各スロットには2カ月のロック期間があります。期間終了後、ダッシュボードから別のOB/OG社員に入替できます。入替後、新しい担当に公式バッジが付与されます。",
+      aE: "Each slot has a 2-month lock period. After it ends, you can swap to a different OB/OG employee from your dashboard. The new assignee receives the verified badge immediately.",
+      category: "companies" as const
+    },
   ];
 
   return (
@@ -68,7 +82,7 @@ export default function BusinessPricingPage() {
               style={{ fontFamily: "var(--font-mono)", color: "var(--color-accent)" }}
             >
               <span className="inline-block h-[1.5px] w-4" style={{ background: "var(--color-accent)" }} />
-              business.senpaicareer.com
+              Pricing
             </div>
 
             <SectionHeader
@@ -127,6 +141,59 @@ export default function BusinessPricingPage() {
                     <T ja="企業として登録" en="Register Company" />
                   </Link>
                 </div>
+              </div>
+            </div>
+
+            {/* OB Slot Plans */}
+            <div className="mb-16">
+              <h3 className="mb-2 text-center text-lg font-bold" style={{ fontFamily: "var(--font-display)" }}>
+                <T ja="公式OB枠プラン" en="Official OB Slot Plans" />
+              </h3>
+              <p className="mx-auto mb-8 max-w-120 text-center text-[13px]" style={{ color: "var(--ink3)" }}>
+                <T
+                  ja="自社のOB/OGを公式認証して、学生からの信頼度を高めましょう。2カ月ごとに担当の入替が可能です。"
+                  en="Verify your OB/OG to boost trust with students. Bi-monthly rotation of assigned members is supported."
+                />
+              </p>
+              <div className="grid gap-6 md:grid-cols-3">
+                {obSlotTiers.map((tier, i) => (
+                  <div
+                    key={i}
+                    className="relative rounded-[14px] border p-6"
+                    style={{
+                      borderColor: tier.popular ? "var(--color-accent)" : "var(--brd)",
+                      background: "var(--card)",
+                      borderWidth: tier.popular ? 2 : 1,
+                    }}
+                  >
+                    {tier.popular && (
+                      <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full px-3 py-0.5 text-[11px] font-bold text-white" style={{ background: "var(--color-accent)" }}>
+                        <T ja="人気" en="Popular" />
+                      </div>
+                    )}
+                    <div className="mb-1 text-[14px] font-bold" style={{ fontFamily: "var(--font-display)" }}>
+                      <T ja={tier.name.ja} en={tier.name.en} />
+                    </div>
+                    <div className="mb-1 text-[36px] font-extrabold" style={{ fontFamily: "var(--font-display)", color: "var(--color-accent)" }}>
+                      {tier.slots}<span className="text-[14px] font-semibold" style={{ color: "var(--ink3)" }}> <T ja="枠" en="slots" /></span>
+                    </div>
+                    <div className="mb-4 text-[12px]" style={{ color: "var(--ink3)" }}>
+                      <T ja="お問い合わせ" en="Contact for pricing" />
+                    </div>
+                    <ul className="mb-5 flex flex-col gap-2">
+                      {tier.features.map((f, fi) => (
+                        <li key={fi} className="flex items-start gap-2 text-[13px]">
+                          <span style={{ color: "var(--green)", fontSize: "14px" }}>✓</span>
+                          <span style={{ color: "var(--ink2)" }}><T ja={f.ja} en={f.en} /></span>
+                        </li>
+                      ))}
+                    </ul>
+                    <Link href="/contact" className={`btn w-full justify-center ${tier.popular ? "btn-accent" : "btn-ghost"}`}>
+                      <T ja="お問い合わせ" en="Contact Sales" />
+                      <span className="arrow">→</span>
+                    </Link>
+                  </div>
+                ))}
               </div>
             </div>
 

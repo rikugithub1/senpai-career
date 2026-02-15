@@ -5,16 +5,12 @@ import Image from "next/image";
 import { T } from "../providers/LanguageProvider";
 import { useTheme } from "../providers/ThemeProvider";
 
-interface FooterProps {
-  subdomain?: string;
-}
-
 /**
  * Footer Component
  *
  * 4-column sitemap structure with logo, links, and social
  */
-export default function Footer({ subdomain }: FooterProps) {
+export default function Footer() {
   const { theme } = useTheme();
 
   return (
@@ -38,11 +34,6 @@ export default function Footer({ subdomain }: FooterProps) {
                 en="Connecting international students with Japanese companies"
               />
             </p>
-            {subdomain && (
-              <div className="mt-2 text-[11px]" style={{ color: "var(--ink4)" }}>
-                {subdomain}
-              </div>
-            )}
           </div>
 
           {/* Column 2: Platform */}
@@ -53,6 +44,9 @@ export default function Footer({ subdomain }: FooterProps) {
             <div className="flex flex-col gap-2">
               <Link href="/community" className="text-[13px] transition-colors hover:opacity-80" style={{ color: "var(--ink3)" }}>
                 <T ja="学生向け" en="For Students" />
+              </Link>
+              <Link href="/obog" className="text-[13px] transition-colors hover:opacity-80" style={{ color: "var(--ink3)" }}>
+                <T ja="OB/OG向け" en="For Alumni" />
               </Link>
               <Link href="/business" className="text-[13px] transition-colors hover:opacity-80" style={{ color: "var(--ink3)" }}>
                 <T ja="企業向け" en="For Companies" />

@@ -5,7 +5,6 @@ interface PageContainerProps {
   children: ReactNode;
   maxWidth?: "160" | "180" | "275" | "325";
   includeFooter?: boolean;
-  footerSubdomain?: string;
 }
 
 /**
@@ -17,7 +16,7 @@ interface PageContainerProps {
  * - Optional footer
  *
  * Usage:
- * <PageContainer maxWidth="180" includeFooter footerSubdomain="app.senpaicareer.com">
+ * <PageContainer maxWidth="180" includeFooter>
  *   <section>Your content</section>
  * </PageContainer>
  */
@@ -25,12 +24,11 @@ export default function PageContainer({
   children,
   maxWidth = "275",
   includeFooter = true,
-  footerSubdomain,
 }: PageContainerProps) {
   return (
     <div style={{ paddingTop: "var(--nav-height)" }}>
       {children}
-      {includeFooter && <Footer subdomain={footerSubdomain} />}
+      {includeFooter && <Footer />}
     </div>
   );
 }

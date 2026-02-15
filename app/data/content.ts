@@ -42,7 +42,7 @@ export interface TestimonialData {
   qE: string;          // English quote
   c: string;           // Color
   bg: string;          // Background color
-  audience: "student" | "company" | "both";  // Audience filter
+  audience: "student" | "company" | "obog" | "both";  // Audience filter
 }
 
 export interface FAQData {
@@ -66,6 +66,14 @@ export interface PricingTier {
   };
   badge?: { ja: string; en: string };
   highlight?: boolean;
+}
+
+export interface OBSlotData {
+  id: number;
+  obog: { initials: string; name: string; ja: string; en: string } | null;
+  status: "active" | "vacant" | "pending";
+  assignedAt: string | null;
+  rotationEnd: string | null;
 }
 
 export interface UniversityData {
@@ -124,6 +132,12 @@ export const bizFeats = [
   { ja: "採用パイプラインを一目で把握", en: "Visual recruitment pipeline at a glance" },
   { ja: "東大・慶應・早稲田の優秀な留学生にリーチ", en: "Reach top talent from Todai, Keio, Waseda" },
   { ja: "候補者管理＆メッセージ機能", en: "Candidate management & messaging" },
+];
+
+export const obogFeats = [
+  { ja: "学生からの訪問リクエストを簡単管理", en: "Easily manage visit requests from students" },
+  { ja: "スケジュールをカレンダーで設定", en: "Set your availability on a calendar" },
+  { ja: "キャリアアドバイスで後輩をサポート", en: "Support juniors with career advice" },
 ];
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -186,10 +200,54 @@ export const testimonials: TestimonialData[] = [
     bg: "var(--red-bg)",
     audience: "company"
   },
+  {
+    i: "HS",
+    ja: "佐藤 大輔",
+    r: "外資コンサル 採用マネージャー",
+    rE: "Hiring Manager, Global Consulting Firm",
+    q: "OB訪問を通じて候補者の人柄やカルチャーフィットを早期に見極められます。採用のミスマッチが大幅に減りました。",
+    qE: "OB visits let us assess cultural fit and personality early. Hiring mismatches have dropped significantly.",
+    c: "var(--green)",
+    bg: "var(--green-bg)",
+    audience: "company"
+  },
+  {
+    i: "KY",
+    ja: "K. Yamada",
+    r: "McKinsey · 慶應卒",
+    rE: "McKinsey · Keio grad",
+    q: "後輩の相談に乗ることで、自分のキャリアも見つめ直すきっかけになりました。プラットフォームが使いやすく、スケジュール管理も簡単です。",
+    qE: "Helping juniors made me reflect on my own career too. The platform is intuitive and schedule management is easy.",
+    c: "var(--yellow)",
+    bg: "var(--yellow-bg)",
+    audience: "obog"
+  },
+  {
+    i: "MT",
+    ja: "M. Tanaka",
+    r: "Google · 東大卒",
+    rE: "Google · UTokyo grad",
+    q: "留学生の就活をサポートできるのは嬉しいです。バイリンガル対応なので、英語でも日本語でも気軽に面談できます。",
+    qE: "It's rewarding to support international students. Being bilingual, I can chat comfortably in both languages.",
+    c: "var(--color-accent)",
+    bg: "var(--accent-soft)",
+    audience: "obog"
+  },
+  {
+    i: "RS",
+    ja: "R. Suzuki",
+    r: "三井物産 · 早稲田卒",
+    rE: "Mitsui & Co. · Waseda grad",
+    q: "商社の実態を後輩に伝えられる良い機会。ESサンプルの共有機能も便利で、具体的なアドバイスができます。",
+    qE: "A great opportunity to share what trading companies are really like. The ES sample sharing feature lets me give concrete advice.",
+    c: "var(--green)",
+    bg: "var(--green-bg)",
+    audience: "obog"
+  },
 ];
 
 // Utility function to filter testimonials by audience
-export const getTestimonialsByAudience = (audience: "student" | "company" | "all"): TestimonialData[] => {
+export const getTestimonialsByAudience = (audience: "student" | "company" | "obog" | "all"): TestimonialData[] => {
   if (audience === "all") return testimonials;
   return testimonials.filter(t => t.audience === audience || t.audience === "both");
 };
@@ -320,6 +378,16 @@ export const businessFeatures: FeatureData[] = [
   { icon: "📊", ja: "ダッシュボード", en: "Dashboard", jaD: "採用状況を視覚的に把握", enD: "Visual overview of recruitment status" },
 ];
 
+export const obogFeatures: FeatureData[] = [
+  { icon: "🏅", ja: "公式OB認証", en: "Official Verification", jaD: "企業から公式OBとして認証されると、学生からの信頼度がアップ", enD: "Get verified by your company to boost trust with students" },
+  { icon: "📩", ja: "訪問リクエスト管理", en: "Manage Visit Requests", jaD: "学生からの訪問リクエストを一覧で確認・承認", enD: "View and approve incoming visit requests from students" },
+  { icon: "📅", ja: "可用時間の登録", en: "Set Availability", jaD: "曜日・時間帯で受付可能枠を登録、学生側へ通知・上位表示", enD: "Register available day/time slots — students get notified and you rank higher" },
+  { icon: "💬", ja: "メッセージ・チャット", en: "Messaging & Chat", jaD: "学生からのメッセージに返信・リアルタイムチャット", enD: "Reply to student messages and chat in real time" },
+  { icon: "👤", ja: "プロフィール編集", en: "Edit Profile", jaD: "経歴・業界・話せるトピックを自由に更新", enD: "Update your career history, industry, and topics freely" },
+  { icon: "✍️", ja: "ES・体験記の共有", en: "Share ES & Stories", jaD: "ESサンプルや就活体験記を追加して後輩をサポート", enD: "Add ES samples and career stories to support juniors" },
+  { icon: "📊", ja: "面談履歴", en: "Visit History", jaD: "過去の面談記録と学生のフィードバックを確認", enD: "Review past visit records and student feedback" },
+];
+
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    DETAILED STEPS (for How It Works page)
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -406,53 +474,6 @@ export const businessDetailedSteps: DetailedStepData[] = [
 ];
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   PRICING DATA
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-
-export const pricingTiers: PricingTier[] = [
-  {
-    name: { ja: "学生プラン", en: "Student Plan" },
-    price: { ja: "¥0", en: "¥0" },
-    period: { ja: "永久無料", en: "Free forever" },
-    description: { ja: "就活生のためのすべての機能", en: "All features for job seekers" },
-    features: [
-      { ja: "OB/OG検索・予約", en: "Search & book OB visits", included: true },
-      { ja: "メッセージ無制限", en: "Unlimited messaging", included: true },
-      { ja: "就活ガイド", en: "Career guides", included: true },
-      { ja: "ES添削サポート", en: "ES review support", included: true },
-      { ja: "業界研究資料", en: "Industry research materials", included: true },
-      { ja: "面接対策", en: "Interview preparation", included: true },
-    ],
-    cta: {
-      href: "/community/signup",
-      label: { ja: "無料で始める", en: "Get started free" },
-      variant: "accent"
-    },
-    badge: { ja: "人気", en: "Popular" },
-    highlight: true
-  },
-  {
-    name: { ja: "企業プラン", en: "Business Plan" },
-    price: { ja: "お問い合わせ", en: "Contact us" },
-    period: { ja: "企業規模に応じた料金", en: "Custom pricing" },
-    description: { ja: "優秀な留学生にリーチ", en: "Reach top international talent" },
-    features: [
-      { ja: "採用パイプライン管理", en: "Recruitment pipeline", included: true },
-      { ja: "候補者データベース", en: "Candidate database", included: true },
-      { ja: "分析レポート", en: "Analytics reports", included: true },
-      { ja: "OB社員管理", en: "OB employee management", included: true },
-      { ja: "専任サポート", en: "Dedicated support", included: true },
-      { ja: "カスタム統合", en: "Custom integrations", included: false },
-    ],
-    cta: {
-      href: "/contact",
-      label: { ja: "お問い合わせ", en: "Contact sales" },
-      variant: "ghost"
-    }
-  }
-];
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    UNIVERSITIES & OTHER DATA
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
@@ -498,4 +519,73 @@ export const talentPoolStats = [
   { label: { ja: "対応大学", en: "Universities" }, value: "3" },
   { label: { ja: "専攻分野", en: "Majors" }, value: "20+" },
   { label: { ja: "登録企業数", en: "Companies" }, value: "50+" },
+];
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   OFFICIAL OB SLOTS (公式OB枠)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+export const obSlotBenefits: FeatureData[] = [
+  {
+    icon: "🏅",
+    ja: "公式認証バッジ",
+    en: "Official Verified Badge",
+    jaD: "学生のOB/OG検索結果で「公式OB」バッジが表示され、信頼度が大幅にアップします。",
+    enD: "A 'Verified OB' badge appears in student search results, significantly boosting trust.",
+  },
+  {
+    icon: "🔄",
+    ja: "2カ月ごとの入替",
+    en: "Bi-Monthly Rotation",
+    jaD: "2カ月ごとに担当OB/OGを入替可能。柔軟にスロットを運用できます。",
+    enD: "Swap assigned OB/OG every 2 months. Operate slots with full flexibility.",
+  },
+  {
+    icon: "📊",
+    ja: "枠の一括管理",
+    en: "Centralized Management",
+    jaD: "購入した枠の割り当て・入替・履歴をダッシュボードで一元管理。",
+    enD: "Manage slot assignments, swaps, and history from a single dashboard.",
+  },
+];
+
+export const obSlotTiers = [
+  {
+    name: { ja: "スターター", en: "Starter" },
+    slots: 3,
+    features: [
+      { ja: "公式OBバッジ × 3名分", en: "Verified OB badge for 3 members" },
+      { ja: "2カ月ごとの入替", en: "Bi-monthly rotation" },
+      { ja: "基本レポート", en: "Basic reports" },
+    ],
+  },
+  {
+    name: { ja: "スタンダード", en: "Standard" },
+    slots: 5,
+    popular: true,
+    features: [
+      { ja: "公式OBバッジ × 5名分", en: "Verified OB badge for 5 members" },
+      { ja: "2カ月ごとの入替", en: "Bi-monthly rotation" },
+      { ja: "詳細レポート＆分析", en: "Detailed reports & analytics" },
+      { ja: "優先サポート", en: "Priority support" },
+    ],
+  },
+  {
+    name: { ja: "エンタープライズ", en: "Enterprise" },
+    slots: 10,
+    features: [
+      { ja: "公式OBバッジ × 10名分", en: "Verified OB badge for 10 members" },
+      { ja: "2カ月ごとの入替", en: "Bi-monthly rotation" },
+      { ja: "カスタムレポート＆API連携", en: "Custom reports & API integration" },
+      { ja: "専任CSマネージャー", en: "Dedicated CS manager" },
+    ],
+  },
+];
+
+export const mockOBSlots: OBSlotData[] = [
+  { id: 1, obog: { initials: "KY", name: "K. Yamada", ja: "McKinsey · 慶應卒", en: "McKinsey · Keio grad" }, status: "active", assignedAt: "2026-01-15", rotationEnd: "2026-03-15" },
+  { id: 2, obog: { initials: "MT", name: "M. Tanaka", ja: "Google · 東大卒", en: "Google · UTokyo grad" }, status: "active", assignedAt: "2026-02-01", rotationEnd: "2026-04-01" },
+  { id: 3, obog: { initials: "RS", name: "R. Suzuki", ja: "三井物産 · 早稲田卒", en: "Mitsui & Co. · Waseda grad" }, status: "active", assignedAt: "2025-12-10", rotationEnd: "2026-02-10" },
+  { id: 4, obog: null, status: "vacant", assignedAt: null, rotationEnd: null },
+  { id: 5, obog: null, status: "vacant", assignedAt: null, rotationEnd: null },
 ];

@@ -15,7 +15,6 @@ export default function CommunityLayout({
 }) {
   return (
     <div data-section="community">
-      {/* Community branding applied to page content */}
       {children}
     </div>
   );

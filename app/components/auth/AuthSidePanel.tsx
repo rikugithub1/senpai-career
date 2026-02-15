@@ -1,18 +1,11 @@
 import { T } from "../providers/LanguageProvider";
 
 interface AuthSidePanelProps {
-  type: "community" | "business";
+  type: "community" | "business" | "obog";
 }
 
-/**
- * Auth Side Panel Component
- *
- * Split-screen brand panel for login/signup pages
- * - Community: Warm teal gradient with student-friendly messaging
- * - Business: Deep navy gradient with professional messaging
- */
-export default function AuthSidePanel({ type }: AuthSidePanelProps) {
-  const content = type === "community" ? {
+const contentMap = {
+  community: {
     icon: "🎒",
     title: { ja: "先輩があなたを待っています", en: "Your senpai are waiting for you" },
     subtitle: { ja: "先輩とつながり、キャリアの扉を開こう", en: "Connect with senpai and unlock your career" },
@@ -20,8 +13,10 @@ export default function AuthSidePanel({ type }: AuthSidePanelProps) {
       { ja: "OB/OG訪問を簡単に予約", en: "Book OB visits easily" },
       { ja: "業界のリアルを知る", en: "Learn industry insights" },
       { ja: "完全無料で利用可能", en: "100% free to use" },
-    ]
-  } : {
+    ],
+    gradient: "linear-gradient(135deg, #0d9488 0%, #14b8a6 100%)",
+  },
+  business: {
     icon: "🏢",
     title: { ja: "優秀な人材を、ここから", en: "Find top talent, right here" },
     subtitle: { ja: "留学生との自然な接点を創出", en: "Create natural connections with international students" },
@@ -29,12 +24,33 @@ export default function AuthSidePanel({ type }: AuthSidePanelProps) {
       { ja: "採用パイプラインを構築", en: "Build recruitment pipeline" },
       { ja: "東大・慶應・早稲田の学生", en: "Students from top universities" },
       { ja: "効率的な候補者管理", en: "Efficient candidate management" },
-    ]
-  };
+    ],
+    gradient: "linear-gradient(135deg, #4338ca 0%, #6366f1 100%)",
+  },
+  obog: {
+    icon: "🎓",
+    title: { ja: "後輩のキャリアを応援しよう", en: "Support the next generation's careers" },
+    subtitle: { ja: "あなたの経験が、後輩の未来を照らす", en: "Your experience lights the path for juniors" },
+    points: [
+      { ja: "訪問リクエストを簡単管理", en: "Manage visit requests easily" },
+      { ja: "スケジュールを柔軟に設定", en: "Set your schedule flexibly" },
+      { ja: "完全無料で利用可能", en: "100% free to use" },
+    ],
+    gradient: "linear-gradient(135deg, #d97706 0%, #f59e0b 100%)",
+  },
+};
 
-  const gradientColor = type === "community"
-    ? "linear-gradient(135deg, #0d9488 0%, #14b8a6 100%)"
-    : "linear-gradient(135deg, #4338ca 0%, #6366f1 100%)";
+/**
+ * Auth Side Panel Component
+ *
+ * Split-screen brand panel for login/signup pages
+ * - Community: Warm teal gradient with student-friendly messaging
+ * - Business: Deep navy gradient with professional messaging
+ * - OB/OG: Amber/gold gradient with alumni messaging
+ */
+export default function AuthSidePanel({ type }: AuthSidePanelProps) {
+  const content = contentMap[type];
+  const gradientColor = content.gradient;
 
   return (
     <div

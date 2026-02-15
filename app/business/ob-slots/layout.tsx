@@ -14,7 +14,6 @@ const config: SidebarProps = {
           ja: "ダッシュボード",
           en: "Dashboard",
           href: "/business/dashboard",
-          active: true,
         },
         {
           icon: "📋",
@@ -39,6 +38,7 @@ const config: SidebarProps = {
           ja: "公式OB枠",
           en: "OB Slots",
           href: "/business/ob-slots",
+          active: true,
         },
       ],
     },
@@ -65,7 +65,7 @@ const config: SidebarProps = {
   },
 };
 
-export default function BusinessDashboardLayout({
+export default function OBSlotsLayout({
   children,
 }: {
   children: React.ReactNode;
