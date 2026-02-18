@@ -2,6 +2,7 @@
 
 import type { JSX } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { T } from "../providers/LanguageProvider";
 
 interface SidebarLink {
@@ -9,7 +10,6 @@ interface SidebarLink {
   readonly ja: string;
   readonly en: string;
   readonly href: string;
-  readonly active?: boolean;
 }
 
 interface SidebarSection {
@@ -36,6 +36,8 @@ export default function DashboardSidebar({
   sections,
   user,
 }: SidebarProps): JSX.Element {
+  const pathname = usePathname();
+
   return (
     <aside
       className="fixed bottom-0 left-0 top-[var(--nav-height)] hidden w-70 flex-col overflow-y-auto border-r p-5 md:flex"
@@ -50,26 +52,29 @@ export default function DashboardSidebar({
             <T ja={sec.ja} en={sec.en} />
           </div>
           <div className="flex flex-col gap-1.5">
-            {sec.links.map((lk) => (
-              <Link
-                key={lk.href}
-                href={lk.href}
-                className="flex items-center gap-3 rounded-lg px-3.5 py-2.5 text-[13.5px] transition-all hover:bg-(--bg-hover)"
-                style={{
-                  fontWeight: lk.active ? 600 : 500,
-                  background: lk.active ? "var(--accent-soft)" : "transparent",
-                  color: lk.active ? "var(--color-accent)" : "var(--ink3)",
-                }}
-              >
-                <span
-                  className="w-[18px] shrink-0 text-center text-sm"
-                  style={{ opacity: lk.active ? 1 : 0.65 }}
+            {sec.links.map((lk) => {
+              const isActive = pathname === lk.href || pathname.startsWith(lk.href + "/");
+              return (
+                <Link
+                  key={lk.href}
+                  href={lk.href}
+                  className="flex items-center gap-3 rounded-lg px-3.5 py-2.5 text-[13.5px] transition-all hover:bg-(--bg-hover)"
+                  style={{
+                    fontWeight: isActive ? 600 : 500,
+                    background: isActive ? "var(--accent-soft)" : "transparent",
+                    color: isActive ? "var(--color-accent)" : "var(--ink3)",
+                  }}
                 >
-                  {lk.icon}
-                </span>
-                <T ja={lk.ja} en={lk.en} />
-              </Link>
-            ))}
+                  <span
+                    className="w-[18px] shrink-0 text-center text-sm"
+                    style={{ opacity: isActive ? 1 : 0.65 }}
+                  >
+                    {lk.icon}
+                  </span>
+                  <T ja={lk.ja} en={lk.en} />
+                </Link>
+              );
+            })}
           </div>
         </div>
       ))}

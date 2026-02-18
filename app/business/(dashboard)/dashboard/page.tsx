@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { T } from "../../components/providers/LanguageProvider";
-import { mockOBSlots } from "../../data/content";
+import { T } from "../../../components/providers/LanguageProvider";
+import { mockOBSlots } from "../../../data/content";
 
 /* ── data ── */
 
@@ -96,7 +96,7 @@ export default function BusinessDashboardPage() {
       <div className="card mb-3.5">
         <div className="card-hd">
           <div className="card-t"><span className="emoji mr-2">🏅</span><T ja="公式OB枠管理" en="Official OB Slot Management" /></div>
-          <Link href="/business/ob-slots" className="card-act"><T ja="全て管理" en="Manage all" /></Link>
+          <Link href="/business/obog-slots" className="card-act"><T ja="全て管理" en="Manage all" /></Link>
         </div>
         <div className="card-bd">
           {/* Summary */}

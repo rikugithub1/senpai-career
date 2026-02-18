@@ -1,5 +1,5 @@
-import { T } from "../../components/providers/LanguageProvider";
-import { mockOBSlots } from "../../data/content";
+import { T } from "../../../components/providers/LanguageProvider";
+import { mockOBSlots } from "../../../data/content";
 
 /* ── mock data ── */
 

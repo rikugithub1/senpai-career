@@ -14,7 +14,6 @@ const config: SidebarProps = {
           ja: "ダッシュボード",
           en: "Dashboard",
           href: "/community/dashboard",
-          active: true,
         },
         {
           icon: "🔍",
@@ -52,7 +51,7 @@ const config: SidebarProps = {
           en: "ES Review",
           href: "/community/es-review",
         },
-        { icon: "⚙", ja: "設定", en: "Settings", href: "/community/dashboard" },
+        { icon: "⚙", ja: "プロフィール設定", en: "Profile Settings", href: "/community/settings" },
       ],
     },
   ],
@@ -65,7 +64,7 @@ const config: SidebarProps = {
   },
 };
 
-export default function CommunityDashboardLayout({
+export default function CommunityDashboardGroupLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -76,7 +75,7 @@ export default function CommunityDashboardLayout({
       style={{ paddingTop: "var(--nav-height)", background: "var(--bg2)" }}
     >
       <DashboardSidebar {...config} />
-      <main className="min-w-0 flex-1 p-6 md:ml-[260px] md:p-7">
+      <main className="min-w-0 flex-1 p-6 md:ml-65 md:p-7">
         {children}
       </main>
     </div>

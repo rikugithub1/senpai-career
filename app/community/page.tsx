@@ -195,12 +195,7 @@ export default function CommunityPage() {
       {/* ═══════════════════════════════════════════════════════ */}
       {/* SECTION 7: FINAL CTA                                     */}
       {/* ═══════════════════════════════════════════════════════ */}
-      <section
-        className="px-6 py-16 md:py-20"
-        style={{
-          background: "linear-gradient(135deg, var(--accent-soft2) 0%, var(--accent-soft) 100%)"
-        }}
-      >
+      <section className="cta-section px-6 py-16 md:py-20">
         <div className="mx-auto max-w-160 text-center">
           <h2
             className="mb-4 font-extrabold leading-tight tracking-tight"

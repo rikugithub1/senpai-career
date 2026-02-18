@@ -35,8 +35,8 @@ export default function PricingPage() {
     {
       q: "今後も無料で使い続けられますか？",
       qE: "Will it remain free in the future?",
-      a: "はい、学生・OB/OGの方向けの基本機能は永久無料です。安心してご利用ください。",
-      aE: "Yes, core features for students and OB/OG will remain free forever.",
+      a: "はい、学生・OB/OGの方向けの基本機能は無料です。安心してご利用ください。",
+      aE: "Yes, core features for students and OB/OG will remain free.",
       category: "students" as const
     },
   ];
@@ -48,7 +48,7 @@ export default function PricingPage() {
           {/* Header */}
           <SectionHeader
             title={{ ja: "完全無料で使える", en: "Completely Free" }}
-            subtitle={{ ja: "学生・OB/OGの方は永久無料。すべての機能が使い放題。", en: "Free forever for students and OB/OG. All features unlimited." }}
+            subtitle={{ ja: "学生・OB/OGの方は無料。すべての機能が使い放題。", en: "Free for students and OB/OG. All features unlimited." }}
           />
 
           {/* Main Pricing Card */}
@@ -67,7 +67,7 @@ export default function PricingPage() {
                 ¥0
               </div>
               <div className="mb-8 text-[14px]" style={{ color: "var(--ink2)" }}>
-                <T ja="永久無料" en="Free Forever" />
+                <T ja="無料" en="Free" />
               </div>
 
               {/* Features List */}
@@ -107,8 +107,8 @@ export default function PricingPage() {
                 </div>
                 <div className="text-[13px] leading-relaxed" style={{ color: "var(--ink3)" }}>
                   <T
-                    ja="留学生の就活を支援するため、学生向け機能は永久無料です。"
-                    en="We support international students' job hunt by keeping student features free forever."
+                    ja="留学生の就活を支援するため、学生向け機能は無料です。"
+                    en="We support international students' job hunt by keeping student features free."
                   />
                 </div>
               </div>

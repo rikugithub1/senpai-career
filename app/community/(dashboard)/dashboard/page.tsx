@@ -1,4 +1,4 @@
-import { T } from "../../components/providers/LanguageProvider";
+import { T } from "../../../components/providers/LanguageProvider";
 
 /* ── data ── */
 

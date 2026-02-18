@@ -25,7 +25,7 @@ export default function SectionHeader({ label, title, subtitle, align = "center"
         <T ja={title.ja} en={title.en} />
       </h2>
       {subtitle && (
-        <p className="text-sm" style={{ color: "var(--ink3)" }}>
+        <p className={`text-sm ${align === "center" ? "mx-auto max-w-md" : ""}`} style={{ color: "var(--ink3)" }}>
           <T ja={subtitle.ja} en={subtitle.en} />
         </p>
       )}

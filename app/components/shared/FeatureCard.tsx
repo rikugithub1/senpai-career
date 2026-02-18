@@ -17,7 +17,7 @@ export default function FeatureCard({ feature }: FeatureCardProps) {
       <div className="mb-1.5 text-[15px] font-bold tracking-tight" style={{ fontFamily: "var(--font-display)" }}>
         <T ja={feature.ja} en={feature.en} />
       </div>
-      <div className="text-[13px] leading-relaxed" style={{ color: "var(--ink3)" }}>
+      <div className="text-[13px] leading-relaxed" style={{ color: "var(--ink2)" }}>
         <T ja={feature.jaD} en={feature.enD} />
       </div>
     </div>

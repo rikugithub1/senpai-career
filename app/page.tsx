@@ -191,11 +191,11 @@ export default function LandingPage() {
 
       {/* ─ BOTTOM CTA ─ */}
       <section className="border-t px-6 py-16 text-center" style={{ borderColor: "var(--brd)" }}>
-        <div className="mx-auto max-w-130">
+        <div className="mx-auto max-w-160">
           <h2 className="mb-3 font-extrabold tracking-tight" style={{ fontFamily: "var(--font-display)", fontSize: "clamp(24px,3vw,32px)" }}>
             <T ja="今すぐSenpai Careerを始めよう" en="Get started with Senpai Career today" />
           </h2>
-          <p className="mx-auto mb-6 max-w-100 text-sm leading-relaxed" style={{ color: "var(--ink3)" }}>
+          <p className="mx-auto mb-6 max-w-120 text-sm leading-relaxed" style={{ color: "var(--ink3)" }}>
             <T ja="登録は無料。あなたのキャリアの第一歩を、先輩と一緒に。" en="Sign up for free. Take your first career step with senpai by your side." />
           </p>
           <div className="flex flex-col items-center justify-center gap-2.5 sm:flex-row">

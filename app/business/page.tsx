@@ -144,7 +144,7 @@ export default function BusinessPage() {
       {/* ═══════════════════════════════════════════════════════ */}
       {/* SECTION 5: COMPANY TESTIMONIALS                          */}
       {/* ═══════════════════════════════════════════════════════ */}
-      <section className="px-6 py-16 md:py-20">
+      <section className="px-6 py-16 md:py-20" style={{ background: "var(--bg2)" }}>
         <div className="mx-auto max-w-275">
           <SectionHeader
             title={{ ja: "導入企業の声", en: "What Companies Say" }}
@@ -160,9 +160,9 @@ export default function BusinessPage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════ */}
-      {/* SECTION 5: PLATFORM SCREENSHOTS                          */}
+      {/* SECTION 6: PLATFORM SCREENSHOTS                          */}
       {/* ═══════════════════════════════════════════════════════ */}
-      <section className="px-6 py-16 md:py-20" style={{ background: "var(--bg2)" }}>
+      <section className="px-6 py-16 md:py-20">
         <div className="mx-auto max-w-275">
           <SectionHeader
             title={{ ja: "直感的な管理画面", en: "Intuitive Dashboard" }}
@@ -183,9 +183,9 @@ export default function BusinessPage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════ */}
-      {/* SECTION 6: TALENT POOL STATS                             */}
+      {/* SECTION 7: TALENT POOL STATS                             */}
       {/* ═══════════════════════════════════════════════════════ */}
-      <section className="px-6 py-16 md:py-20">
+      <section className="px-6 py-16 md:py-20" style={{ background: "var(--bg2)" }}>
         <div className="mx-auto max-w-180">
           <SectionHeader
             title={{ ja: "質の高い人材プール", en: "High-Quality Talent Pool" }}
@@ -213,12 +213,7 @@ export default function BusinessPage() {
       {/* ═══════════════════════════════════════════════════════ */}
       {/* SECTION 7: FINAL CTA                                     */}
       {/* ═══════════════════════════════════════════════════════ */}
-      <section
-        className="px-6 py-16 md:py-20"
-        style={{
-          background: "linear-gradient(135deg, var(--accent-soft2) 0%, var(--accent-soft) 100%)"
-        }}
-      >
+      <section className="cta-section px-6 py-16 md:py-20">
         <div className="mx-auto max-w-160 text-center">
           <h2
             className="mb-4 font-extrabold leading-tight tracking-tight"

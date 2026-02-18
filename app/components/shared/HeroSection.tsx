@@ -33,17 +33,17 @@ export default function HeroSection({
 }: HeroSectionProps) {
   return (
     <section
-      className="px-6 py-16 md:py-20"
+      className="px-6 pt-20 pb-8 md:pt-24 md:pb-10"
       style={{
         background: "linear-gradient(180deg, var(--accent-soft) 0%, var(--bg) 100%)"
       }}
     >
       <div className="mx-auto max-w-275">
-        <div className="grid items-start gap-10 md:grid-cols-[1fr_380px] md:gap-14">
+        <div className="grid items-start gap-12 md:grid-cols-[1fr_380px] md:gap-16">
           {/* Left: Main Content */}
           <div>
             <div
-              className="mb-4 flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-widest"
+              className="mb-5 flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-widest"
               style={{ fontFamily: "var(--font-mono)", color: "var(--color-accent)" }}
             >
               <span className="inline-block h-[1.5px] w-4" style={{ background: "var(--color-accent)" }} />
@@ -58,7 +58,7 @@ export default function HeroSection({
               <span className="en-only">{headingEn}</span>
             </h1>
 
-            <p className="mb-6 text-[14.5px] leading-relaxed" style={{ color: "var(--ink2)" }}>
+            <p className="mt-5 mb-8 max-w-xl text-[14.5px] leading-relaxed" style={{ color: "var(--ink2)" }}>
               <T ja={description.ja} en={description.en} />
             </p>
 
@@ -74,7 +74,7 @@ export default function HeroSection({
           </div>
 
           {/* Right: Quick Features Card */}
-          <div className="flex flex-col gap-3.5 rounded-[14px] border p-6" style={{ borderColor: "var(--brd)", background: "var(--card)" }}>
+          <div className="flex flex-col gap-4 rounded-[14px] border p-7" style={{ borderColor: "var(--brd)", background: "var(--card)" }}>
             <div className="text-[15px] font-bold" style={{ fontFamily: "var(--font-display)" }}>
               <T ja={cardTitle.ja} en={cardTitle.en} />
             </div>

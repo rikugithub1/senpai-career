@@ -14,7 +14,6 @@ const config: SidebarProps = {
           ja: "ダッシュボード",
           en: "Dashboard",
           href: "/business/dashboard",
-          active: true,
         },
         {
           icon: "📋",
@@ -36,9 +35,9 @@ const config: SidebarProps = {
         },
         {
           icon: "🏅",
-          ja: "公式OB枠",
-          en: "OB Slots",
-          href: "/business/ob-slots",
+          ja: "OB/OG枠",
+          en: "OB/OG Slots",
+          href: "/business/obog-slots",
         },
       ],
     },
@@ -52,7 +51,7 @@ const config: SidebarProps = {
           en: "Reports",
           href: "/business/report",
         },
-        { icon: "⚙", ja: "設定", en: "Settings", href: "/business/dashboard" },
+        { icon: "⚙", ja: "プロフィール設定", en: "Profile Settings", href: "/business/settings" },
       ],
     },
   ],
@@ -65,7 +64,7 @@ const config: SidebarProps = {
   },
 };
 
-export default function BusinessDashboardLayout({
+export default function BusinessDashboardGroupLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -76,7 +75,7 @@ export default function BusinessDashboardLayout({
       style={{ paddingTop: "var(--nav-height)", background: "var(--bg2)" }}
     >
       <DashboardSidebar {...config} />
-      <main className="min-w-0 flex-1 p-6 md:ml-[260px] md:p-7">
+      <main className="min-w-0 flex-1 p-6 md:ml-65 md:p-7">
         {children}
       </main>
     </div>
