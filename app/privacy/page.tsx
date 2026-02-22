@@ -32,7 +32,7 @@ export default function PrivacyPage() {
               <T ja="プライバシーポリシー" en="Privacy Policy" />
             </h1>
             <p className="text-sm" style={{ color: "var(--ink3)" }}>
-              <T ja="最終更新日: [日付を記入してください]" en="Last Updated: [Date to be added]" />
+              <T ja="最終更新日: 2026年2月23日" en="Last Updated: February 23, 2026" />
             </p>
           </div>
 

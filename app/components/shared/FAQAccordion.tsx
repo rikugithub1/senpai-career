@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { T } from "../providers/LanguageProvider";
 import { FAQData } from "@/app/data/content";
+import Icon from "./Icon";
 
 interface FAQAccordionProps {
   faq: FAQData;
@@ -30,7 +31,7 @@ export default function FAQAccordion({ faq }: FAQAccordionProps) {
           className="shrink-0 text-lg transition-transform"
           style={{ transform: isOpen ? "rotate(180deg)" : "rotate(0deg)" }}
         >
-          ▼
+          <Icon name="chevron-down" size={18} />
         </div>
       </div>
       {isOpen && (

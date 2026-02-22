@@ -7,6 +7,7 @@ interface ImagePlaceholderProps {
 }
 
 import { T } from "../providers/LanguageProvider";
+import Icon from "./Icon";
 
 /**
  * Image placeholder component for screenshots and illustrations
@@ -21,7 +22,7 @@ export default function ImagePlaceholder({
   variant = "screenshot",
   aspectRatio
 }: ImagePlaceholderProps) {
-  const icon = variant === "screenshot" ? "📱" : variant === "illustration" ? "🎨" : "📷";
+  const iconName = variant === "screenshot" ? "smartphone" : variant === "illustration" ? "palette" : "camera";
 
   const style: React.CSSProperties = aspectRatio
     ? {
@@ -40,7 +41,7 @@ export default function ImagePlaceholder({
   return (
     <div className="flex items-center justify-center rounded-lg border-2 border-dashed" style={style}>
       <div className="text-center">
-        <div className="mb-2 text-2xl">{icon}</div>
+        <div className="mb-2"><Icon name={iconName} size={24} /></div>
         <div className="text-xs" style={{ color: "var(--ink4)" }}>
           {typeof label === "string" ? label : <T ja={label.ja} en={label.en} />}
         </div>

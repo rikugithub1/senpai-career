@@ -1,0 +1,107 @@
+"use client";
+
+import {
+  GraduationCap, Globe, Handshake, Search, Calendar, MessageSquare,
+  BookOpen, Target, PenLine, BadgeCheck, Inbox, User, BarChart3,
+  ClipboardList, Users, Building2, RefreshCw, Smartphone, Palette,
+  Camera, ChevronDown, ChevronRight, Check, Minus, Sun, Moon,
+  Bell, Settings, CreditCard, LogOut, Menu, X, Eye, EyeOff,
+  ArrowLeft, Star, HelpCircle, Trash2, Paperclip, Smile, TrendingUp,
+  LayoutDashboard, Sparkles, Clock, FileText, Lightbulb, Mic,
+  Bookmark, Rocket, Send, MapPin, Video, UserCheck, CalendarCheck,
+  UserPlus, KanbanSquare, ExternalLink, Info, AlertCircle, CheckCircle,
+  XCircle, ArrowRight, Plus, Filter, MoreVertical, Edit, Mail,
+  Phone, Linkedin, Twitter, Heart, Share2, Download, Upload, Package,
+  type LucideProps,
+} from "lucide-react";
+import type { ComponentType } from "react";
+
+const iconMap: Record<string, ComponentType<LucideProps>> = {
+  "graduation-cap": GraduationCap,
+  "globe": Globe,
+  "handshake": Handshake,
+  "search": Search,
+  "calendar": Calendar,
+  "calendar-check": CalendarCheck,
+  "message-square": MessageSquare,
+  "book-open": BookOpen,
+  "target": Target,
+  "pen-line": PenLine,
+  "badge-check": BadgeCheck,
+  "inbox": Inbox,
+  "user": User,
+  "user-plus": UserPlus,
+  "user-check": UserCheck,
+  "users": Users,
+  "bar-chart-3": BarChart3,
+  "clipboard-list": ClipboardList,
+  "building-2": Building2,
+  "refresh-cw": RefreshCw,
+  "smartphone": Smartphone,
+  "palette": Palette,
+  "camera": Camera,
+  "chevron-down": ChevronDown,
+  "chevron-right": ChevronRight,
+  "check": Check,
+  "minus": Minus,
+  "sun": Sun,
+  "moon": Moon,
+  "bell": Bell,
+  "settings": Settings,
+  "credit-card": CreditCard,
+  "log-out": LogOut,
+  "menu": Menu,
+  "x": X,
+  "eye": Eye,
+  "eye-off": EyeOff,
+  "arrow-left": ArrowLeft,
+  "arrow-right": ArrowRight,
+  "star": Star,
+  "help-circle": HelpCircle,
+  "trash-2": Trash2,
+  "paperclip": Paperclip,
+  "smile": Smile,
+  "trending-up": TrendingUp,
+  "layout-dashboard": LayoutDashboard,
+  "sparkles": Sparkles,
+  "clock": Clock,
+  "file-text": FileText,
+  "lightbulb": Lightbulb,
+  "mic": Mic,
+  "bookmark": Bookmark,
+  "rocket": Rocket,
+  "send": Send,
+  "map-pin": MapPin,
+  "video": Video,
+  "kanban-square": KanbanSquare,
+  "external-link": ExternalLink,
+  "info": Info,
+  "alert-circle": AlertCircle,
+  "check-circle": CheckCircle,
+  "x-circle": XCircle,
+  "plus": Plus,
+  "filter": Filter,
+  "more-vertical": MoreVertical,
+  "edit": Edit,
+  "mail": Mail,
+  "phone": Phone,
+  "linkedin": Linkedin,
+  "twitter": Twitter,
+  "heart": Heart,
+  "share-2": Share2,
+  "download": Download,
+  "upload": Upload,
+  "package": Package,
+};
+
+interface IconProps extends LucideProps {
+  name: string;
+}
+
+export default function Icon({ name, size = 18, className, ...props }: IconProps) {
+  const IconComponent = iconMap[name];
+  if (!IconComponent) {
+    return null;
+  }
+  return <IconComponent size={size} className={className} {...props} />;
+}

@@ -22,6 +22,7 @@ import type { Metadata } from "next";
 import { Outfit, Noto_Sans_JP, JetBrains_Mono } from "next/font/google";
 import { ThemeProvider } from "./components/providers/ThemeProvider";
 import { LanguageProvider } from "./components/providers/LanguageProvider";
+import { ToastProvider } from "./components/providers/ToastProvider";
 import Navbar from "./components/layout/Navbar";
 import "./globals.css";
 
@@ -135,22 +136,24 @@ export default function RootLayout({
             Any component can use: const { lang, setLang, t } = useLang()
           */}
           <LanguageProvider>
-            {/*
-              🧭 UNIFIED NAVBAR
-              Shows on all pages with consistent navigation.
-              Branding (colors) automatically adjust based on current section.
-            */}
-            <Navbar />
+            <ToastProvider>
+              {/*
+                🧭 UNIFIED NAVBAR
+                Shows on all pages with consistent navigation.
+                Branding (colors) automatically adjust based on current section.
+              */}
+              <Navbar />
 
-            {/*
-              📄 PAGE CONTENT
-              This is where your actual page content renders
-              For example:
-              - / → renders app/page.tsx
-              - /community → renders app/community/page.tsx
-              - /business → renders app/business/page.tsx
-            */}
-            {children}
+              {/*
+                📄 PAGE CONTENT
+                This is where your actual page content renders
+                For example:
+                - / → renders app/page.tsx
+                - /community → renders app/community/page.tsx
+                - /business → renders app/business/page.tsx
+              */}
+              {children}
+            </ToastProvider>
           </LanguageProvider>
         </ThemeProvider>
       </body>

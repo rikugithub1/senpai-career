@@ -2,10 +2,11 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTheme } from "../providers/ThemeProvider";
 import { useLang, T } from "../providers/LanguageProvider";
 import Logo from "./Logo";
+import Icon from "../shared/Icon";
 
 interface NavLink {
   readonly href: string;
@@ -15,9 +16,9 @@ interface NavLink {
 
 const links: readonly NavLink[] = [
   { href: "/", ja: "ホーム", en: "Home" },
-  { href: "/community", ja: "学生の方", en: "For Students" },
-  { href: "/obog", ja: "OB/OGの方", en: "For Alumni" },
-  { href: "/business", ja: "企業の方", en: "For Companies" },
+  { href: "/community", ja: "コミュニティ", en: "Community" },
+  { href: "/obog", ja: "OB/OGの方", en: "OB/OG" },
+  { href: "/business", ja: "企業の方", en: "Business" },
   { href: "/how-it-works", ja: "使い方", en: "How It Works" },
   { href: "/pricing", ja: "料金", en: "Pricing" },
   { href: "/faq", ja: "FAQ", en: "FAQ" },
@@ -28,7 +29,28 @@ export default function Navbar() {
   const { theme, toggleTheme } = useTheme();
   const { lang, setLang } = useLang();
   const [open, setOpen] = useState<boolean>(false);
-  const isDash = path.includes("/dashboard");
+  const [scrolled, setScrolled] = useState<boolean>(false);
+
+  // Scroll shadow
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 10);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Hide on dashboard pages — DashboardNavbar renders there instead
+  const isDash =
+    path.includes("/dashboard") ||
+    path.includes("/settings") ||
+    path.includes("/messages") ||
+    path.includes("/bookings") ||
+    path.includes("/search-obog") ||
+    path.includes("/visit-requests") ||
+    path.includes("/schedule") ||
+    path.includes("/pipeline") ||
+    path.includes("/candidates") ||
+    path.includes("/obog-slots") ||
+    path.includes("/reports");
 
   // Determine current section for branding
   const section = path.startsWith("/business")
@@ -39,13 +61,16 @@ export default function Navbar() {
     ? "community"
     : undefined;
 
+  // Don't render on dashboard pages
+  if (isDash) return null;
+
   const isActive = (href: string): boolean => {
     return href === "/" ? path === "/" : path.startsWith(href);
   };
 
   return (
     <nav
-      className="fixed inset-x-0 top-0 z-50 border-b backdrop-blur-xl transition-all"
+      className={`fixed inset-x-0 top-0 z-50 border-b backdrop-blur-xl transition-all${scrolled ? " nav-scrolled" : ""}`}
       data-section={section}
       style={{
         height: "var(--nav-height)",
@@ -120,7 +145,7 @@ export default function Navbar() {
             aria-label="Toggle theme"
             suppressHydrationWarning
           >
-            {theme === "light" ? "☀️" : "🌙"}
+            {theme === "light" ? <Icon name="sun" size={16} /> : <Icon name="moon" size={16} />}
           </button>
 
           {/* Auth — hide on dashboard, context-aware */}
@@ -159,20 +184,7 @@ export default function Navbar() {
             onClick={() => setOpen(!open)}
             aria-label="Menu"
           >
-            <div className="flex flex-col gap-1">
-              <span
-                className="block h-[1.5px] w-4 rounded"
-                style={{ background: "var(--ink)" }}
-              />
-              <span
-                className="block h-[1.5px] w-4 rounded"
-                style={{ background: "var(--ink)" }}
-              />
-              <span
-                className="block h-[1.5px] w-4 rounded"
-                style={{ background: "var(--ink)" }}
-              />
-            </div>
+            {open ? <Icon name="x" size={20} /> : <Icon name="menu" size={20} />}
           </button>
         </div>
       </div>

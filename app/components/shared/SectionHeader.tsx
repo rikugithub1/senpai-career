@@ -1,7 +1,7 @@
 import { T } from "../providers/LanguageProvider";
 
 interface SectionHeaderProps {
-  label?: string;
+  label?: string | { ja: string; en: string };
   title: { ja: string; en: string };
   subtitle?: { ja: string; en: string };
   align?: "left" | "center";
@@ -17,7 +17,11 @@ export default function SectionHeader({ label, title, subtitle, align = "center"
 
   return (
     <div className={`mb-8 ${alignClass}`}>
-      {label && <div className="sec-label">{label}</div>}
+      {label && (
+        <div className="sec-label">
+          {typeof label === "string" ? label : <T ja={label.ja} en={label.en} />}
+        </div>
+      )}
       <h2
         className="mb-2 font-bold tracking-tight"
         style={{ fontFamily: "var(--font-display)", fontSize: "clamp(22px,2.5vw,28px)" }}

@@ -1,4 +1,5 @@
 import { T } from "../providers/LanguageProvider";
+import Icon from "../shared/Icon";
 
 interface AuthSidePanelProps {
   type: "community" | "business" | "obog";
@@ -6,7 +7,7 @@ interface AuthSidePanelProps {
 
 const contentMap = {
   community: {
-    icon: "🎒",
+    icon: "graduation-cap",
     title: { ja: "先輩があなたを待っています", en: "Your senpai are waiting for you" },
     subtitle: { ja: "先輩とつながり、キャリアの扉を開こう", en: "Connect with senpai and unlock your career" },
     points: [
@@ -17,7 +18,7 @@ const contentMap = {
     gradient: "linear-gradient(135deg, #0d9488 0%, #14b8a6 100%)",
   },
   business: {
-    icon: "🏢",
+    icon: "building-2",
     title: { ja: "優秀な人材を、ここから", en: "Find top talent, right here" },
     subtitle: { ja: "留学生との自然な接点を創出", en: "Create natural connections with international students" },
     points: [
@@ -28,7 +29,7 @@ const contentMap = {
     gradient: "linear-gradient(135deg, #4338ca 0%, #6366f1 100%)",
   },
   obog: {
-    icon: "🎓",
+    icon: "book-open",
     title: { ja: "後輩のキャリアを応援しよう", en: "Support the next generation's careers" },
     subtitle: { ja: "あなたの経験が、後輩の未来を照らす", en: "Your experience lights the path for juniors" },
     points: [
@@ -58,7 +59,9 @@ export default function AuthSidePanel({ type }: AuthSidePanelProps) {
       style={{ background: gradientColor }}
     >
       {/* Icon */}
-      <div className="mb-6 text-6xl">{content.icon}</div>
+      <div className="mb-6">
+        <Icon name={content.icon} size={48} />
+      </div>
 
       {/* Title */}
       <h2 className="mb-3 text-3xl font-bold leading-tight" style={{ fontFamily: "var(--font-display)" }}>
@@ -75,7 +78,7 @@ export default function AuthSidePanel({ type }: AuthSidePanelProps) {
         {content.points.map((point, i) => (
           <div key={i} className="flex items-start gap-3">
             <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-white bg-opacity-20">
-              <span className="text-sm">✓</span>
+              <Icon name="check" size={16} />
             </div>
             <span className="text-base">
               <T ja={point.ja} en={point.en} />
@@ -86,9 +89,9 @@ export default function AuthSidePanel({ type }: AuthSidePanelProps) {
 
       {/* Decorative Element */}
       <div className="mt-12 flex gap-2 opacity-50">
-        <div className="h-1 w-12 rounded-full bg-white"></div>
-        <div className="h-1 w-8 rounded-full bg-white"></div>
-        <div className="h-1 w-4 rounded-full bg-white"></div>
+        <div className="h-2 w-2 rounded-full bg-white"></div>
+        <div className="h-2 w-2 rounded-full bg-white opacity-60"></div>
+        <div className="h-2 w-2 rounded-full bg-white opacity-30"></div>
       </div>
     </div>
   );

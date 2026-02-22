@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import Link from "next/link";
 import { T } from "../providers/LanguageProvider";
+import Icon from "./Icon";
 
 interface HeroFeature {
   icon: string;
@@ -39,15 +40,14 @@ export default function HeroSection({
       }}
     >
       <div className="mx-auto max-w-275">
-        <div className="grid items-start gap-12 md:grid-cols-[1fr_380px] md:gap-16">
+        <div className="grid items-start gap-12 md:grid-cols-[1.15fr_0.85fr] md:gap-16">
           {/* Left: Main Content */}
           <div>
             <div
               className="mb-5 flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-widest"
               style={{ fontFamily: "var(--font-mono)", color: "var(--color-accent)" }}
             >
-              <span className="inline-block h-[1.5px] w-4" style={{ background: "var(--color-accent)" }} />
-              {badge}
+              <span className="tag tag-accent">{badge}</span>
             </div>
 
             <h1
@@ -58,7 +58,7 @@ export default function HeroSection({
               <span className="en-only">{headingEn}</span>
             </h1>
 
-            <p className="mt-5 mb-8 max-w-xl text-[14.5px] leading-relaxed" style={{ color: "var(--ink2)" }}>
+            <p className="mt-5 mb-8 max-w-xl text-[14.5px] leading-relaxed" style={{ color: "var(--ink2)", textWrap: "balance" }}>
               <T ja={description.ja} en={description.en} />
             </p>
 
@@ -81,7 +81,7 @@ export default function HeroSection({
 
             {cardFeatures.map((f, i) => (
               <div key={i} className="flex items-start gap-2.5 text-[13px]">
-                <div className="emoji shrink-0">{f.icon}</div>
+                <div className="icon-box icon-box-sm shrink-0"><Icon name={f.icon} size={16} /></div>
                 <div style={{ color: "var(--ink2)" }}>
                   <strong style={{ color: "var(--ink)", fontWeight: 600 }}>
                     <T ja={f.ja} en={f.en} />

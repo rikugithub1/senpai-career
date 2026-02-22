@@ -43,6 +43,8 @@ export interface TestimonialData {
   c: string;           // Color
   bg: string;          // Background color
   audience: "student" | "company" | "obog" | "both";  // Audience filter
+  rating?: number;     // Star rating (1-5)
+  date?: string;       // Date string
 }
 
 export interface FAQData {
@@ -50,7 +52,7 @@ export interface FAQData {
   qE: string;          // English question
   a: string;           // Japanese answer
   aE: string;          // English answer
-  category: "students" | "companies" | "general" | "technical";
+  category: "students" | "companies" | "obog" | "platform";
 }
 
 export interface PricingTier {
@@ -94,21 +96,21 @@ export interface TeamMember {
 
 export const features: FeatureData[] = [
   {
-    icon: "🎓",
+    icon: "graduation-cap",
     ja: "留学生の87%が知らない文化",
     en: "87% of students don't know",
     jaD: "OB/OG訪問は日本の就活の重要な文化ですが、留学生のほとんどがその存在を知りません。Senpaiがその壁を取り払います。",
     enD: "OB/OG visits are critical in Japanese job hunting, but most international students don't know they exist. Senpai breaks that barrier.",
   },
   {
-    icon: "🌏",
+    icon: "globe",
     ja: "日本語・英語バイリンガル",
     en: "Fully bilingual JP/EN",
     jaD: "既存のOB訪問アプリは日本語のみ。Senpai Careerは完全バイリンガル対応で、言語の壁を超えた就活を実現します。",
     enD: "Existing OB visit apps are Japanese-only. Senpai Career is fully bilingual, enabling job hunting beyond language barriers.",
   },
   {
-    icon: "🤝",
+    icon: "handshake",
     ja: "企業と留学生の架け橋",
     en: "Bridge between companies & students",
     jaD: "多様な人材を求める企業と、日本で活躍したい留学生。Senpaiが両者をつなぎ、自然な出会いを生みます。",
@@ -117,25 +119,25 @@ export const features: FeatureData[] = [
 ];
 
 export const steps: StepData[] = [
-  { ja: "無料登録", en: "Sign Up Free", jaD: "学生または企業として登録。プロフィールを入力するだけ。", enD: "Register as a student or company. Just fill in your profile." },
-  { ja: "先輩を見つける", en: "Find Your Senpai", jaD: "業界・企業でOB/OGを検索。興味のある先輩に訪問を申し込み。", enD: "Search OB/OG by industry and company. Request a visit with the right senpai." },
+  { ja: "無料登録", en: "Sign Up Free", jaD: "コミュニティユーザーまたは企業として登録。プロフィールを入力するだけ。", enD: "Register as a community user or company. Just fill in your profile." },
+  { ja: "OB/OGを検索", en: "Find OB/OG", jaD: "業界・企業でOB/OGを検索。興味のあるOB/OGに訪問を申し込み。", enD: "Search OB/OG by industry and company. Request a visit with the right OB/OG." },
   { ja: "キャリアを切り拓く", en: "Launch Your Career", jaD: "OB/OG訪問で企業のリアルを知り、就活を有利に進めよう。", enD: "Learn the real story through OB visits and get ahead in your job hunt." },
 ];
 
 export const studentFeats = [
-  { ja: "先輩社会人にワンクリックで訪問申し込み", en: "One-click visit requests to senpai" },
+  { ja: "OB/OGにワンクリックで訪問申し込み", en: "One-click visit requests to OB/OG" },
   { ja: "日英バイリンガル完全対応", en: "Full JP/EN bilingual support" },
   { ja: "就活ロードマップ＆ESガイド", en: "Job hunting roadmaps & ES guides" },
 ];
 
 export const bizFeats = [
   { ja: "採用パイプラインを一目で把握", en: "Visual recruitment pipeline at a glance" },
-  { ja: "東大・慶應・早稲田の優秀な留学生にリーチ", en: "Reach top talent from Todai, Keio, Waseda" },
+  { ja: "全国の優秀な留学生にリーチ", en: "Reach top talent from universities across Japan" },
   { ja: "候補者管理＆メッセージ機能", en: "Candidate management & messaging" },
 ];
 
 export const obogFeats = [
-  { ja: "学生からの訪問リクエストを簡単管理", en: "Easily manage visit requests from students" },
+  { ja: "コミュニティユーザーからの訪問リクエストを簡単管理", en: "Easily manage visit requests from community users" },
   { ja: "スケジュールをカレンダーで設定", en: "Set your availability on a calendar" },
   { ja: "キャリアアドバイスで後輩をサポート", en: "Support juniors with career advice" },
 ];
@@ -154,7 +156,9 @@ export const testimonials: TestimonialData[] = [
     qE: "Thanks to Senpai, I understood Japanese job hunting culture and got OB visits at a top investment bank.",
     c: "var(--green)",
     bg: "var(--green-bg)",
-    audience: "student"
+    audience: "student",
+    rating: 5,
+    date: "2026-01"
   },
   {
     i: "JP",
@@ -165,7 +169,9 @@ export const testimonials: TestimonialData[] = [
     qE: "The bilingual support means I can use it comfortably even though my Japanese isn't perfect.",
     c: "var(--blue)",
     bg: "var(--blue-bg)",
-    audience: "student"
+    audience: "student",
+    rating: 5,
+    date: "2025-12"
   },
   {
     i: "TS",
@@ -176,7 +182,9 @@ export const testimonials: TestimonialData[] = [
     qE: "Extremely effective for reaching talented international students. Pipeline visualization improved our hiring process.",
     c: "var(--color-accent)",
     bg: "var(--accent-soft)",
-    audience: "company"
+    audience: "company",
+    rating: 5,
+    date: "2025-11"
   },
   {
     i: "LW",
@@ -187,7 +195,9 @@ export const testimonials: TestimonialData[] = [
     qE: "Senpai's advice dramatically improved my interview prep. I gained deep understanding of Japanese corporate culture.",
     c: "var(--yellow)",
     bg: "var(--yellow-bg)",
-    audience: "student"
+    audience: "student",
+    rating: 5,
+    date: "2026-01"
   },
   {
     i: "KY",
@@ -198,7 +208,9 @@ export const testimonials: TestimonialData[] = [
     qE: "For us seeking diverse hiring, Senpai is the ideal platform. We've connected with amazing international talent.",
     c: "var(--red)",
     bg: "var(--red-bg)",
-    audience: "company"
+    audience: "company",
+    rating: 4,
+    date: "2025-10"
   },
   {
     i: "HS",
@@ -209,7 +221,9 @@ export const testimonials: TestimonialData[] = [
     qE: "OB visits let us assess cultural fit and personality early. Hiring mismatches have dropped significantly.",
     c: "var(--green)",
     bg: "var(--green-bg)",
-    audience: "company"
+    audience: "company",
+    rating: 5,
+    date: "2025-12"
   },
   {
     i: "KY",
@@ -220,7 +234,9 @@ export const testimonials: TestimonialData[] = [
     qE: "Helping juniors made me reflect on my own career too. The platform is intuitive and schedule management is easy.",
     c: "var(--yellow)",
     bg: "var(--yellow-bg)",
-    audience: "obog"
+    audience: "obog",
+    rating: 5,
+    date: "2026-02"
   },
   {
     i: "MT",
@@ -231,7 +247,9 @@ export const testimonials: TestimonialData[] = [
     qE: "It's rewarding to support international students. Being bilingual, I can chat comfortably in both languages.",
     c: "var(--color-accent)",
     bg: "var(--accent-soft)",
-    audience: "obog"
+    audience: "obog",
+    rating: 5,
+    date: "2026-01"
   },
   {
     i: "RS",
@@ -242,7 +260,9 @@ export const testimonials: TestimonialData[] = [
     qE: "A great opportunity to share what trading companies are really like. The ES sample sharing feature lets me give concrete advice.",
     c: "var(--green)",
     bg: "var(--green-bg)",
-    audience: "obog"
+    audience: "obog",
+    rating: 4,
+    date: "2025-11"
   },
 ];
 
@@ -259,25 +279,25 @@ export const getTestimonialsByAudience = (audience: "student" | "company" | "obo
 export const faqs: FAQData[] = [
   // Students category
   {
-    q: "学生は本当に無料ですか？",
-    qE: "Is it really free for students and OB/OG (alumni)?",
-    a: "はい、学生のご利用は完全無料です。OB/OG検索、訪問予約、メッセージ機能すべて無料でお使いいただけます。",
-    aE: "Yes, completely free for students and OB/OG (alumni). Search, booking, and messaging features are all available at no cost.",
+    q: "コミュニティユーザーは本当に無料ですか？",
+    qE: "Is it really free for community users and OB/OG?",
+    a: "はい、コミュニティユーザーの基本プランは完全無料です。OB/OG検索、訪問予約、1日5通までのメッセージ機能を無料でお使いいただけます。",
+    aE: "Yes, the basic plan for community users is completely free. Search, booking, and up to 5 messages per day are available at no cost.",
     category: "students"
   },
   {
-    q: "どの大学の学生が対象ですか？",
+    q: "どの大学のユーザーが対象ですか？",
     qE: "Which universities are supported?",
-    a: "現在は東京大学・慶應義塾大学・早稲田大学の留学生を中心にサービスを展開しています。今後、対象校を順次拡大予定です。",
-    aE: "We currently focus on international students from UTokyo, Keio, and Waseda. We plan to expand to more universities soon.",
+    a: "全国の大学の留学生が対象です。大学を問わずご登録いただけます。",
+    aE: "International students from universities across Japan are welcome. You can register regardless of your university.",
     category: "students"
   },
   {
     q: "OB/OG訪問はオンラインでもできますか？",
     qE: "Can OB/OG visits be done online?",
-    a: "はい、オンライン・対面どちらも対応しています。先輩のプロフィールで対応形式を確認できます。",
-    aE: "Yes, both online and in-person visits are supported. You can check each senpai's profile for their preferred format.",
-    category: "general"
+    a: "はい、オンライン・対面どちらも対応しています。OB/OGのプロフィールで対応形式を確認できます。",
+    aE: "Yes, both online and in-person visits are supported. You can check each OB/OG's profile for their preferred format.",
+    category: "students"
   },
   {
     q: "どのような企業のOB/OGがいますか？",
@@ -296,9 +316,32 @@ export const faqs: FAQData[] = [
   {
     q: "訪問申し込みが承認されない場合もありますか？",
     qE: "Can my visit request be declined?",
-    a: "はい、先輩の都合により承認されない場合もあります。その場合は別の先輩に申し込むことができます。",
-    aE: "Yes, requests may be declined due to senpai's availability. In that case, you can request visits with other senpai.",
+    a: "はい、OB/OGの都合により承認されない場合もあります。その場合は別のOB/OGに申し込むことができます。",
+    aE: "Yes, requests may be declined due to the OB/OG's availability. In that case, you can request visits with other OB/OG.",
     category: "students"
+  },
+
+  // OB/OG category
+  {
+    q: "OB/OGとして登録するのに費用はかかりますか？",
+    qE: "Does it cost anything to register as OB/OG?",
+    a: "いいえ、OB/OGとしてのご登録・ご利用は完全無料です。",
+    aE: "No, registering and using the platform as OB/OG is completely free.",
+    category: "obog"
+  },
+  {
+    q: "公式OB/OGとは何ですか？",
+    qE: "What is an official OB/OG?",
+    a: "企業から公式に認定されたOB/OGです。プロフィールに公式バッジが表示され、コミュニティユーザーからの信頼度が高まります。複数企業からの認定も可能です。",
+    aE: "An OB/OG officially certified by a company. An official badge appears on your profile, boosting trust with community users. You can be certified by multiple companies.",
+    category: "obog"
+  },
+  {
+    q: "複数の企業から公式OB/OG認定を受けることはできますか？",
+    qE: "Can I be certified as official OB/OG by multiple companies?",
+    a: "はい、複数の企業から公式認定を受けることが可能です。表示する認定企業は任意で選択できます。",
+    aE: "Yes, you can receive official certification from multiple companies. You can choose which certifications to display.",
+    category: "obog"
   },
 
   // Companies category
@@ -330,21 +373,21 @@ export const faqs: FAQData[] = [
     qE: "What security measures are in place?",
     a: "SSL暗号化、個人情報保護法準拠、定期的なセキュリティ監査を実施しています。詳しくはプライバシーポリシーをご覧ください。",
     aE: "We implement SSL encryption, comply with privacy laws, and conduct regular security audits. See our privacy policy for details.",
-    category: "technical"
+    category: "platform"
   },
   {
     q: "アカウントを削除することはできますか？",
     qE: "Can I delete my account?",
     a: "はい、設定ページからいつでもアカウントを削除できます。削除後、すべてのデータは完全に消去されます。",
     aE: "Yes, you can delete your account anytime from settings. All your data will be permanently erased.",
-    category: "technical"
+    category: "platform"
   },
   {
     q: "モバイルアプリはありますか？",
     qE: "Is there a mobile app?",
     a: "現在はWebアプリのみですが、モバイルブラウザで快適にご利用いただけます。ネイティブアプリは開発中です。",
     aE: "Currently web-only, but fully optimized for mobile browsers. Native apps are in development.",
-    category: "technical"
+    category: "platform"
   },
 ];
 
@@ -359,33 +402,33 @@ export const getFAQsByCategory = (category?: string): FAQData[] => {
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 export const communityFeatures: FeatureData[] = [
-  { icon: "🔍", ja: "先輩を検索", en: "Find senpai", jaD: "業界・企業・大学でフィルタリング", enD: "Filter by industry, company, university" },
-  { icon: "📅", ja: "訪問を予約", en: "Book visits", jaD: "カレンダーから日程を選ぶだけ", enD: "Just pick a date from the calendar" },
-  { icon: "💬", ja: "直接やりとり", en: "Direct messaging", jaD: "先輩とメッセージで事前に相談", enD: "Chat with senpai before your visit" },
-  { icon: "📖", ja: "就活ガイド", en: "Career guides", jaD: "ES・面接対策をステップバイステップで", enD: "ES & interview prep step by step" },
-  { icon: "🎯", ja: "業界研究", en: "Industry research", jaD: "各業界の特徴と求められるスキル", enD: "Industry insights and required skills" },
-  { icon: "✍️", ja: "ES添削サポート", en: "ES review support", jaD: "先輩からのフィードバックを受けられる", enD: "Get feedback from senpai on your ES" },
+  { icon: "search", ja: "OB/OGを検索", en: "Find OB/OG", jaD: "業界・企業・大学でフィルタリング", enD: "Filter by industry, company, university" },
+  { icon: "calendar", ja: "訪問を予約", en: "Book visits", jaD: "カレンダーから日程を選ぶだけ", enD: "Just pick a date from the calendar" },
+  { icon: "message-square", ja: "直接やりとり", en: "Direct messaging", jaD: "OB/OGとメッセージで事前に相談", enD: "Chat with OB/OG before your visit" },
+  { icon: "book-open", ja: "就活ガイド", en: "Career guides", jaD: "ES・面接対策をステップバイステップで", enD: "ES & interview prep step by step" },
+  { icon: "target", ja: "業界研究", en: "Industry research", jaD: "各業界の特徴と求められるスキル", enD: "Industry insights and required skills" },
+  { icon: "pen-line", ja: "ES添削サポート", en: "ES review support", jaD: "先輩からのフィードバックを受けられる", enD: "Get feedback from senpai on your ES" },
 ];
 
 export const businessFeatures: FeatureData[] = [
-  { icon: "📋", ja: "採用パイプライン", en: "Recruitment Pipeline", jaD: "OB訪問→ES→面接→内定を一目で管理", enD: "Track OB visit → Application → Interview → Offer" },
-  { icon: "👥", ja: "候補者管理", en: "Candidate Management", jaD: "留学生の情報を一元管理", enD: "Centralized international student profiles" },
-  { icon: "💬", ja: "メッセージ", en: "Messaging", jaD: "候補者と直接やりとり", enD: "Direct communication with candidates" },
-  { icon: "📈", ja: "分析レポート", en: "Analytics", jaD: "エンゲージメントと採用効果を分析", enD: "Track engagement and hiring effectiveness" },
-  { icon: "🏢", ja: "OB社員管理", en: "OB Management", jaD: "社内OB/OGのスケジュールを一括管理", enD: "Manage all OB/OG schedules in one place" },
-  { icon: "🎓", ja: "大学別フィルター", en: "Filter by university", jaD: "東大・慶應・早稲田など大学別に検索", enD: "Search by Todai, Keio, Waseda, etc." },
-  { icon: "🌏", ja: "バイリンガル対応", en: "Bilingual ready", jaD: "日英両言語で候補者とコミュニケーション", enD: "Communicate in both JP and EN" },
-  { icon: "📊", ja: "ダッシュボード", en: "Dashboard", jaD: "採用状況を視覚的に把握", enD: "Visual overview of recruitment status" },
+  { icon: "clipboard-list", ja: "採用パイプライン", en: "Recruitment Pipeline", jaD: "OB訪問→ES→面接→内定を一目で管理", enD: "Track OB visit → Application → Interview → Offer" },
+  { icon: "users", ja: "候補者管理", en: "Candidate Management", jaD: "留学生の情報を一元管理", enD: "Centralized international student profiles" },
+  { icon: "message-square", ja: "メッセージ", en: "Messaging", jaD: "候補者と直接やりとり", enD: "Direct communication with candidates" },
+  { icon: "bar-chart-3", ja: "分析レポート", en: "Analytics", jaD: "エンゲージメントと採用効果を分析", enD: "Track engagement and hiring effectiveness" },
+  { icon: "building-2", ja: "公式OB/OG枠管理", en: "Official OB/OG Management", jaD: "公式OB/OG枠の登録・管理", enD: "Register and manage official OB/OG slots" },
+  { icon: "graduation-cap", ja: "大学別フィルター", en: "Filter by university", jaD: "全国の大学から候補者を検索", enD: "Search candidates from universities across Japan" },
+  { icon: "globe", ja: "バイリンガル対応", en: "Bilingual ready", jaD: "日英両言語で候補者とコミュニケーション", enD: "Communicate in both JP and EN" },
+  { icon: "layout-dashboard", ja: "ダッシュボード", en: "Dashboard", jaD: "採用状況を視覚的に把握", enD: "Visual overview of recruitment status" },
 ];
 
 export const obogFeatures: FeatureData[] = [
-  { icon: "🏅", ja: "公式OB認証", en: "Official Verification", jaD: "企業から公式OBとして認証されると、学生からの信頼度がアップ", enD: "Get verified by your company to boost trust with students" },
-  { icon: "📩", ja: "訪問リクエスト管理", en: "Manage Visit Requests", jaD: "学生からの訪問リクエストを一覧で確認・承認", enD: "View and approve incoming visit requests from students" },
-  { icon: "📅", ja: "可用時間の登録", en: "Set Availability", jaD: "曜日・時間帯で受付可能枠を登録、学生側へ通知・上位表示", enD: "Register available day/time slots — students get notified and you rank higher" },
-  { icon: "💬", ja: "メッセージ・チャット", en: "Messaging & Chat", jaD: "学生からのメッセージに返信・リアルタイムチャット", enD: "Reply to student messages and chat in real time" },
-  { icon: "👤", ja: "プロフィール編集", en: "Edit Profile", jaD: "経歴・業界・話せるトピックを自由に更新", enD: "Update your career history, industry, and topics freely" },
-  { icon: "✍️", ja: "ES・体験記の共有", en: "Share ES & Stories", jaD: "ESサンプルや就活体験記を追加して後輩をサポート", enD: "Add ES samples and career stories to support juniors" },
-  { icon: "📊", ja: "面談履歴", en: "Visit History", jaD: "過去の面談記録と学生のフィードバックを確認", enD: "Review past visit records and student feedback" },
+  { icon: "badge-check", ja: "公式OB/OG認証", en: "Official Verification", jaD: "企業から公式OB/OGとして認証されると、コミュニティユーザーからの信頼度がアップ", enD: "Get verified by your company to boost trust with community users" },
+  { icon: "inbox", ja: "訪問リクエスト管理", en: "Manage Visit Requests", jaD: "コミュニティユーザーからの訪問リクエストを一覧で確認・承認", enD: "View and approve incoming visit requests from community users" },
+  { icon: "calendar", ja: "可用時間の登録", en: "Set Availability", jaD: "曜日・時間帯で受付可能枠を登録、コミュニティユーザーへ通知・上位表示", enD: "Register available day/time slots — community users get notified and you rank higher" },
+  { icon: "message-square", ja: "メッセージ・チャット", en: "Messaging & Chat", jaD: "コミュニティユーザーからのメッセージに返信・リアルタイムチャット", enD: "Reply to community user messages and chat in real time" },
+  { icon: "user", ja: "プロフィール編集", en: "Edit Profile", jaD: "経歴・業界・話せるトピックを自由に更新", enD: "Update your career history, industry, and topics freely" },
+  { icon: "pen-line", ja: "ES・体験記の共有", en: "Share ES & Stories", jaD: "ESサンプルや就活体験記を追加して後輩をサポート", enD: "Add ES samples and career stories to support juniors" },
+  { icon: "bar-chart-3", ja: "面談履歴", en: "Visit History", jaD: "過去の面談記録と学生のフィードバックを確認", enD: "Review past visit records and student feedback" },
 ];
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -396,10 +439,10 @@ export const studentDetailedSteps: DetailedStepData[] = [
   {
     ja: "無料登録",
     en: "Sign Up Free",
-    jaD: "学生として登録。プロフィールを入力するだけ。",
-    enD: "Register as a student. Just fill in your profile.",
-    jaLong: "メールアドレスと大学情報を入力して、無料アカウントを作成します。所要時間はわずか2分。プロフィールには興味のある業界や企業、希望する職種などを記入します。この情報をもとに、あなたにぴったりの先輩をマッチングします。\n\n登録後すぐに、東大・慶應・早稲田のOB/OGデータベースにアクセスできます。完全無料、クレジットカード不要です。",
-    enLong: "Create your free account by entering your email and university information. It takes just 2 minutes. Fill in your profile with your interests, target industries, companies, and desired roles. We'll use this to match you with the right senpai.\n\nOnce registered, you'll immediately get access to our database of OB/OG from UTokyo, Keio, and Waseda. Completely free, no credit card required.",
+    jaD: "コミュニティユーザーとして登録。プロフィールを入力するだけ。",
+    enD: "Register as a community user. Just fill in your profile.",
+    jaLong: "メールアドレスと大学情報を入力して、無料アカウントを作成します。所要時間はわずか2分。プロフィールには興味のある業界や企業、希望する職種などを記入します。この情報をもとに、あなたにぴったりのOB/OGをマッチングします。\n\n登録後すぐに、全国の大学出身のOB/OGデータベースにアクセスできます。完全無料、クレジットカード不要です。",
+    enLong: "Create your free account by entering your email and university information. It takes just 2 minutes. Fill in your profile with your interests, target industries, companies, and desired roles. We'll use this to match you with the right OB/OG.\n\nOnce registered, you'll immediately get access to our database of OB/OG from universities across Japan. Completely free, no credit card required.",
     screenshot: "student-signup",
     tips: [
       { ja: "大学のメールアドレスを使うと認証が早い", en: "Use your university email for faster verification" },
@@ -407,12 +450,12 @@ export const studentDetailedSteps: DetailedStepData[] = [
     ]
   },
   {
-    ja: "先輩を検索",
-    en: "Search for Senpai",
+    ja: "OB/OGを検索",
+    en: "Search for OB/OG",
     jaD: "業界・企業でOB/OGを検索。",
     enD: "Search OB/OG by industry and company.",
-    jaLong: "業界、企業、職種などの条件で先輩を検索します。各先輩のプロフィールには、現在の仕事内容、経歴、対応可能な訪問形式（オンライン/対面）、得意分野などが詳しく記載されています。\n\n検索結果は関連度順に表示され、あなたの興味に合った先輩を簡単に見つけることができます。気になる先輩を見つけたら、プロフィールを確認して訪問を申し込みましょう。",
-    enLong: "Search for senpai by industry, company, job function, and more. Each profile includes details about their current role, career path, visit format preferences (online/in-person), and areas of expertise.\n\nResults are sorted by relevance to help you find the most suitable senpai. When you find someone interesting, review their profile and request a visit.",
+    jaLong: "業界、企業、職種などの条件でOB/OGを検索します。各OB/OGのプロフィールには、現在の仕事内容、経歴、対応可能な訪問形式（オンライン/対面）、得意分野などが詳しく記載されています。\n\n検索結果は関連度順に表示され、あなたの興味に合ったOB/OGを簡単に見つけることができます。気になるOB/OGを見つけたら、プロフィールを確認して訪問を申し込みましょう。",
+    enLong: "Search for OB/OG by industry, company, job function, and more. Each profile includes details about their current role, career path, visit format preferences (online/in-person), and areas of expertise.\n\nResults are sorted by relevance to help you find the most suitable OB/OG. When you find someone interesting, review their profile and request a visit.",
     screenshot: "senpai-search",
     tips: [
       { ja: "複数の先輩に申し込むと承認率が上がる", en: "Requesting multiple senpai increases approval rate" },
@@ -481,6 +524,10 @@ export const universities: UniversityData[] = [
   { name: "東京大学", nameEn: "University of Tokyo" },
   { name: "慶應義塾大学", nameEn: "Keio University" },
   { name: "早稲田大学", nameEn: "Waseda University" },
+  { name: "上智大学", nameEn: "Sophia University" },
+  { name: "明治大学", nameEn: "Meiji University" },
+  { name: "立教大学", nameEn: "Rikkyo University" },
+  { name: "その他全国の大学", nameEn: "And more universities across Japan" },
 ];
 
 export const teamMembers: TeamMember[] = [
@@ -492,21 +539,21 @@ export const teamMembers: TeamMember[] = [
 
 export const companyValues = [
   {
-    icon: "🌏",
+    icon: "globe",
     ja: "多様性を力に",
     en: "Diversity as Strength",
     jaD: "異なる背景を持つ人々が出会い、新しい価値を生み出す場を創ります。",
     enD: "We create spaces where people from diverse backgrounds meet and create new value.",
   },
   {
-    icon: "🤝",
+    icon: "handshake",
     ja: "信頼関係を第一に",
     en: "Trust First",
     jaD: "学生、企業、OB/OG、すべての人が安心して使えるプラットフォームを目指します。",
     enD: "We build a platform where students, companies, and OB/OG can all feel secure.",
   },
   {
-    icon: "🚀",
+    icon: "rocket",
     ja: "挑戦を応援",
     en: "Support Challenges",
     jaD: "日本で働きたい留学生の挑戦を、テクノロジーの力で支えます。",
@@ -514,12 +561,6 @@ export const companyValues = [
   },
 ];
 
-export const talentPoolStats = [
-  { label: { ja: "登録学生数", en: "Registered Students" }, value: "500+" },
-  { label: { ja: "対応大学", en: "Universities" }, value: "3" },
-  { label: { ja: "専攻分野", en: "Majors" }, value: "20+" },
-  { label: { ja: "登録企業数", en: "Companies" }, value: "50+" },
-];
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    OFFICIAL OB SLOTS (公式OB枠)
@@ -527,21 +568,21 @@ export const talentPoolStats = [
 
 export const obSlotBenefits: FeatureData[] = [
   {
-    icon: "🏅",
+    icon: "badge-check",
     ja: "公式認証バッジ",
     en: "Official Verified Badge",
-    jaD: "学生のOB/OG検索結果で「公式OB」バッジが表示され、信頼度が大幅にアップします。",
-    enD: "A 'Verified OB' badge appears in student search results, significantly boosting trust.",
+    jaD: "コミュニティユーザーのOB/OG検索結果で「公式OB/OG」バッジが表示され、信頼度が大幅にアップします。",
+    enD: "A 'Verified OB/OG' badge appears in community user search results, significantly boosting trust.",
   },
   {
-    icon: "🔄",
+    icon: "refresh-cw",
     ja: "2カ月ごとの入替",
     en: "Bi-Monthly Rotation",
     jaD: "2カ月ごとに担当OB/OGを入替可能。柔軟にスロットを運用できます。",
     enD: "Swap assigned OB/OG every 2 months. Operate slots with full flexibility.",
   },
   {
-    icon: "📊",
+    icon: "bar-chart-3",
     ja: "枠の一括管理",
     en: "Centralized Management",
     jaD: "購入した枠の割り当て・入替・履歴をダッシュボードで一元管理。",
@@ -588,4 +629,134 @@ export const mockOBSlots: OBSlotData[] = [
   { id: 3, obog: { initials: "RS", name: "R. Suzuki", ja: "三井物産 · 早稲田卒", en: "Mitsui & Co. · Waseda grad" }, status: "active", assignedAt: "2025-12-10", rotationEnd: "2026-02-10" },
   { id: 4, obog: null, status: "vacant", assignedAt: null, rotationEnd: null },
   { id: 5, obog: null, status: "vacant", assignedAt: null, rotationEnd: null },
+];
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   PARTICIPATING COMPANIES (参加企業)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+export interface CompanyData {
+  name: string;
+  nameEn: string;
+}
+
+export const participatingCompanies: CompanyData[] = [
+  { name: "マッキンゼー", nameEn: "McKinsey & Company" },
+  { name: "ゴールドマン・サックス", nameEn: "Goldman Sachs" },
+  { name: "Google", nameEn: "Google" },
+  { name: "三井物産", nameEn: "Mitsui & Co." },
+  { name: "ソニー", nameEn: "Sony" },
+  { name: "トヨタ自動車", nameEn: "Toyota" },
+  { name: "ボストン コンサルティング", nameEn: "BCG" },
+  { name: "JPモルガン", nameEn: "JP Morgan" },
+  { name: "三菱商事", nameEn: "Mitsubishi Corporation" },
+  { name: "Amazon", nameEn: "Amazon" },
+  { name: "アクセンチュア", nameEn: "Accenture" },
+  { name: "野村証券", nameEn: "Nomura Securities" },
+  { name: "デロイト", nameEn: "Deloitte" },
+  { name: "パナソニック", nameEn: "Panasonic" },
+  { name: "楽天", nameEn: "Rakuten" },
+  { name: "メルカリ", nameEn: "Mercari" },
+];
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   CAREER GUIDE ARTICLES (就活ガイド記事)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+export interface ArticleData {
+  slug: string;
+  title: { ja: string; en: string };
+  excerpt: { ja: string; en: string };
+  category: string;
+  icon: string;
+  readTime: number;
+}
+
+export const careerArticles: ArticleData[] = [
+  {
+    slug: "what-is-obog",
+    title: { ja: "OB/OGとは？", en: "What is OB/OG?" },
+    excerpt: { ja: "日本の就活文化における「OB/OG訪問」の重要性と、留学生がOB/OG訪問を活用するためのガイド。", en: "A guide to understanding 'OB/OG visits' in Japanese job hunting culture and how international students can leverage them." },
+    category: "basics",
+    icon: "book-open",
+    readTime: 5,
+  },
+  {
+    slug: "shukatsu-skills",
+    title: { ja: "就活に有利なスキル", en: "Skills That Give You an Edge" },
+    excerpt: { ja: "日本の就活で評価されるスキルと、留学生がアピールすべきポイントを解説します。", en: "Learn which skills are valued in Japanese job hunting and what international students should highlight." },
+    category: "skills",
+    icon: "lightbulb",
+    readTime: 7,
+  },
+  {
+    slug: "es-writing-guide",
+    title: { ja: "落ちないESの書き方", en: "How to Write a Winning ES" },
+    excerpt: { ja: "エントリーシート（ES）の基本構成、書き方のコツ、よくあるNG例を解説。", en: "Master the basics of Entry Sheet (ES) writing: structure, tips, and common mistakes to avoid." },
+    category: "es",
+    icon: "pen-line",
+    readTime: 10,
+  },
+  {
+    slug: "interview-preparation",
+    title: { ja: "面接対策ガイド", en: "Interview Preparation Guide" },
+    excerpt: { ja: "日本企業の面接形式、よく聞かれる質問、留学生向けの準備方法をまとめました。", en: "Japanese company interview formats, common questions, and preparation tips for international students." },
+    category: "interview",
+    icon: "mic",
+    readTime: 8,
+  },
+  {
+    slug: "industry-guide",
+    title: { ja: "業界研究ガイド", en: "Industry Research Guide" },
+    excerpt: { ja: "コンサル・金融・商社・IT・メーカーなど、主要業界の特徴と求められるスキルを解説。", en: "Overview of major industries including consulting, finance, trading, IT, and manufacturing." },
+    category: "research",
+    icon: "search",
+    readTime: 12,
+  },
+];
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   OB/OG DETAILED STEPS (for OB/OG How It Works page)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+export const obogDetailedSteps: DetailedStepData[] = [
+  {
+    ja: "無料登録",
+    en: "Sign Up Free",
+    jaD: "OB/OGとしてアカウントを作成。",
+    enD: "Create your account as an OB/OG.",
+    jaLong: "会社のメールアドレスを使って、無料アカウントを作成します。所要時間はわずか2分。プロフィールには現在の会社・役職、卒業大学、話せるトピック（業界、就活、キャリアパスなど）を記入します。\n\n企業から公式OB/OGとして認定されると、プロフィールに公式バッジが表示され、コミュニティユーザーからの信頼度がアップします。",
+    enLong: "Create your free account using your company email. It takes just 2 minutes. Fill in your profile with your current company and role, alma mater, and topics you can discuss (industry, job hunting, career paths, etc.).\n\nIf certified as an official OB/OG by your company, an official badge will appear on your profile, boosting trust with community users.",
+    screenshot: "obog-signup",
+    tips: [
+      { ja: "会社のメールアドレスを使うと認証が早い", en: "Use your company email for faster verification" },
+      { ja: "プロフィールを充実させると訪問リクエストが増える", en: "A detailed profile increases visit requests" }
+    ]
+  },
+  {
+    ja: "スケジュール設定",
+    en: "Set Your Availability",
+    jaD: "対応可能な日時を登録。",
+    enD: "Register your available time slots.",
+    jaLong: "カレンダーで対応可能な曜日・時間帯を登録します。オンライン・対面のどちらで対応するかも設定できます。\n\nスケジュールを登録すると、コミュニティユーザーの検索結果で上位表示されるため、より多くの訪問リクエストを受けやすくなります。",
+    enLong: "Register your available days and time slots on the calendar. You can also set whether you prefer online or in-person visits.\n\nSetting your schedule boosts your ranking in community user search results, making it easier to receive more visit requests.",
+    screenshot: "obog-schedule",
+    tips: [
+      { ja: "定期的にスケジュールを更新しましょう", en: "Update your schedule regularly" },
+      { ja: "オンラインと対面の両方に対応すると訪問が増える", en: "Offering both online and in-person options increases visits" }
+    ]
+  },
+  {
+    ja: "訪問リクエスト対応",
+    en: "Handle Visit Requests",
+    jaD: "コミュニティユーザーからのリクエストを承認・管理。",
+    enD: "Approve and manage requests from community users.",
+    jaLong: "コミュニティユーザーからの訪問リクエストが届くと通知が届きます。リクエストには、ユーザーの大学・専攻・興味分野が記載されています。\n\n承認・拒否・別日程の提案が簡単に行えます。承認すると、ユーザーにオンラインミーティングリンクや場所の詳細が自動送信されます。",
+    enLong: "You'll receive notifications when community users send visit requests. Each request includes the user's university, major, and areas of interest.\n\nYou can easily approve, decline, or suggest alternative dates. Upon approval, meeting links or location details are automatically sent to the user.",
+    screenshot: "obog-requests",
+    tips: [
+      { ja: "できるだけ早くリクエストに回答しましょう", en: "Respond to requests as quickly as possible" },
+      { ja: "リクエスターのプロフィールを確認してから回答", en: "Review the requester's profile before responding" }
+    ]
+  },
 ];

@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { T } from "../providers/LanguageProvider";
 import { useTheme } from "../providers/ThemeProvider";
+import Icon from "../shared/Icon";
 
 /**
  * Footer Component
@@ -43,10 +44,10 @@ export default function Footer() {
             </h3>
             <div className="flex flex-col gap-2">
               <Link href="/community" className="text-[13px] transition-colors hover:opacity-80" style={{ color: "var(--ink3)" }}>
-                <T ja="学生向け" en="For Students" />
+                <T ja="コミュニティ向け" en="For Community" />
               </Link>
               <Link href="/obog" className="text-[13px] transition-colors hover:opacity-80" style={{ color: "var(--ink3)" }}>
-                <T ja="OB/OG向け" en="For Alumni" />
+                <T ja="OB/OG向け" en="For OB/OG (Alumni)" />
               </Link>
               <Link href="/business" className="text-[13px] transition-colors hover:opacity-80" style={{ color: "var(--ink3)" }}>
                 <T ja="企業向け" en="For Companies" />
@@ -97,11 +98,25 @@ export default function Footer() {
         {/* Bottom row: Social + Copyright */}
         <div className="mt-8 flex flex-col gap-4 border-t pt-6 md:flex-row md:items-center md:justify-between" style={{ borderColor: "var(--brd)" }}>
           <div className="flex gap-4 justify-center md:justify-start">
-            <Link href="#" className="text-xs transition-colors hover:opacity-80" style={{ color: "var(--ink3)" }} aria-label="LinkedIn">
-              LinkedIn
+            <Link
+              href="#"
+              className="flex h-8 w-8 items-center justify-center rounded-lg transition-all"
+              style={{ color: "var(--ink3)" }}
+              onMouseEnter={(e) => { e.currentTarget.style.color = "var(--ink)"; e.currentTarget.style.background = "var(--bg-hover)"; }}
+              onMouseLeave={(e) => { e.currentTarget.style.color = "var(--ink3)"; e.currentTarget.style.background = "transparent"; }}
+              aria-label="LinkedIn"
+            >
+              <Icon name="linkedin" size={16} />
             </Link>
-            <Link href="#" className="text-xs transition-colors hover:opacity-80" style={{ color: "var(--ink3)" }} aria-label="X">
-              X
+            <Link
+              href="#"
+              className="flex h-8 w-8 items-center justify-center rounded-lg transition-all"
+              style={{ color: "var(--ink3)" }}
+              onMouseEnter={(e) => { e.currentTarget.style.color = "var(--ink)"; e.currentTarget.style.background = "var(--bg-hover)"; }}
+              onMouseLeave={(e) => { e.currentTarget.style.color = "var(--ink3)"; e.currentTarget.style.background = "transparent"; }}
+              aria-label="X"
+            >
+              <Icon name="twitter" size={16} />
             </Link>
           </div>
           <div className="text-center text-[11.5px] md:text-right" style={{ color: "var(--ink3)" }}>

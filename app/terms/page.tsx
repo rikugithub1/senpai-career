@@ -31,7 +31,7 @@ export default function TermsPage() {
               <T ja="利用規約" en="Terms of Service" />
             </h1>
             <p className="text-sm" style={{ color: "var(--ink3)" }}>
-              <T ja="最終更新日: [日付を記入してください]" en="Last Updated: [Date to be added]" />
+              <T ja="最終更新日: 2026年2月23日" en="Last Updated: February 23, 2026" />
             </p>
           </div>
 

@@ -1,4 +1,5 @@
 import { T } from "../../../components/providers/LanguageProvider";
+import Icon from "../../../components/shared/Icon";
 import { mockOBSlots } from "../../../data/content";
 
 /* ── mock data ── */
@@ -7,9 +8,9 @@ const activeCount = mockOBSlots.filter((s) => s.status === "active").length;
 const vacantCount = mockOBSlots.filter((s) => s.status === "vacant").length;
 
 const slotStats = [
-  { ja: "合計枠数", en: "Total Slots", v: String(mockOBSlots.length) },
-  { ja: "使用中", en: "Active", v: String(activeCount) },
-  { ja: "空き枠", en: "Vacant", v: String(vacantCount) },
+  { ja: "合計枠数", en: "Total Slots", v: String(mockOBSlots.length), border: "var(--blue)", bg: "var(--blue-bg)" },
+  { ja: "使用中", en: "Active", v: String(activeCount), border: "var(--green)", bg: "var(--green-bg)" },
+  { ja: "空き枠", en: "Vacant", v: String(vacantCount), border: "var(--yellow)", bg: "var(--yellow-bg)" },
 ];
 
 const availableEmployees = [
@@ -28,7 +29,7 @@ const activityLog = [
 /* ── helpers ── */
 
 function daysUntil(dateStr: string) {
-  const diff = Math.ceil((new Date(dateStr).getTime() - new Date("2026-02-16").getTime()) / 86400000);
+  const diff = Math.ceil((new Date(dateStr).getTime() - new Date().getTime()) / 86400000);
   return diff > 0 ? diff : 0;
 }
 
@@ -56,7 +57,7 @@ export default function OBSlotsPage() {
       {/* Stats */}
       <div className="mb-5 grid gap-3 sm:grid-cols-3">
         {slotStats.map((s, i) => (
-          <div key={i} className="stat">
+          <div key={i} className="stat" style={{ borderLeft: `3px solid ${s.border}` }}>
             <div className="stat-lbl">
               <T ja={s.ja} en={s.en} />
             </div>
@@ -69,7 +70,7 @@ export default function OBSlotsPage() {
       <div className="card mb-3.5">
         <div className="card-hd">
           <div className="card-t">
-            <span className="emoji mr-2">🏅</span>
+            <Icon name="badge-check" size={16} className="mr-2" style={{ color: "var(--color-accent)" }} />
             <T ja="スロット一覧" en="Slot List" />
           </div>
           <div className="text-[12px]" style={{ color: "var(--ink3)" }}>
@@ -82,7 +83,7 @@ export default function OBSlotsPage() {
         <div className="card-bd">
           {/* Column headers */}
           <div
-            className="mb-2 grid items-center gap-3 text-[10.5px] font-semibold uppercase tracking-wider"
+            className="mb-2 hidden items-center gap-3 text-[10.5px] font-semibold uppercase tracking-wider md:grid"
             style={{
               gridTemplateColumns: "36px 1fr 90px 100px 100px",
               fontFamily: "var(--font-display)",
@@ -97,13 +98,13 @@ export default function OBSlotsPage() {
           </div>
 
           {mockOBSlots.map((slot) => {
-            const isSwappable = slot.rotationEnd && new Date(slot.rotationEnd) <= new Date("2026-02-16");
+            const isSwappable = slot.rotationEnd && new Date(slot.rotationEnd) <= new Date();
             const remaining = slot.rotationEnd ? daysUntil(slot.rotationEnd) : 0;
 
             return (
               <div
                 key={slot.id}
-                className="grid items-center gap-3 border-b py-3 last:border-b-0"
+                className="flex items-center gap-3 border-b py-3 last:border-b-0 md:grid"
                 style={{
                   gridTemplateColumns: "36px 1fr 90px 100px 100px",
                   borderColor: "var(--brd2)",
@@ -111,7 +112,7 @@ export default function OBSlotsPage() {
               >
                 {/* Slot number */}
                 <div
-                  className="flex h-7 w-7 items-center justify-center rounded-lg text-[11px] font-bold"
+                  className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-[11px] font-bold"
                   style={{ background: "var(--bg3)", color: "var(--ink3)" }}
                 >
                   {slot.id}
@@ -119,9 +120,9 @@ export default function OBSlotsPage() {
 
                 {/* OB/OG info */}
                 {slot.obog ? (
-                  <div className="flex items-center gap-2.5">
+                  <div className="flex min-w-0 flex-1 items-center gap-2.5">
                     <div
-                      className="av av-sm"
+                      className="av av-sm shrink-0"
                       style={{
                         background: "var(--accent-soft)",
                         color: "var(--color-accent)",
@@ -139,46 +140,62 @@ export default function OBSlotsPage() {
                       <div className="text-[10.5px]" style={{ color: "var(--ink3)" }}>
                         <T ja={slot.obog.ja} en={slot.obog.en} />
                       </div>
+                      {/* Mobile-only: status + rotation */}
+                      <div className="mt-1 flex items-center gap-1.5 md:hidden">
+                        {isSwappable ? (
+                          <span className="tag tag-yellow">
+                            <T ja="入替可能" en="Swap ready" />
+                          </span>
+                        ) : (
+                          <span className="tag tag-green">
+                            <T ja="アクティブ" en="Active" />
+                          </span>
+                        )}
+                      </div>
                     </div>
                   </div>
                 ) : (
-                  <div className="text-[13px]" style={{ color: "var(--ink4)" }}>
+                  <div className="min-w-0 flex-1 text-[13px] md:flex-none" style={{ color: "var(--ink4)" }}>
                     <T ja="未割り当て" en="Unassigned" />
                   </div>
                 )}
 
-                {/* Status */}
-                {slot.obog ? (
-                  isSwappable ? (
-                    <span className="tag tag-yellow">
-                      <T ja="入替可能" en="Swap ready" />
-                    </span>
-                  ) : (
-                    <span className="tag tag-green">
-                      <T ja="アクティブ" en="Active" />
-                    </span>
-                  )
-                ) : (
-                  <span className="tag" style={{ background: "var(--bg3)", color: "var(--ink4)" }}>
-                    <T ja="空き" en="Vacant" />
-                  </span>
-                )}
-
-                {/* Rotation */}
-                {slot.rotationEnd ? (
-                  <div className="text-[11px]" style={{ color: isSwappable ? "var(--yellow)" : "var(--ink3)" }}>
-                    {isSwappable ? (
-                      <T ja="入替可能" en="Ready" />
+                {/* Status — desktop only */}
+                <span className="hidden md:inline-flex">
+                  {slot.obog ? (
+                    isSwappable ? (
+                      <span className="tag tag-yellow">
+                        <T ja="入替可能" en="Swap ready" />
+                      </span>
                     ) : (
-                      <T ja={`残り ${remaining}日`} en={`${remaining} days left`} />
-                    )}
-                  </div>
-                ) : (
-                  <div className="text-[11px]" style={{ color: "var(--ink4)" }}>—</div>
-                )}
+                      <span className="tag tag-green">
+                        <T ja="アクティブ" en="Active" />
+                      </span>
+                    )
+                  ) : (
+                    <span className="tag" style={{ background: "var(--bg3)", color: "var(--ink4)" }}>
+                      <T ja="空き" en="Vacant" />
+                    </span>
+                  )}
+                </span>
+
+                {/* Rotation — desktop only */}
+                <div className="hidden md:block">
+                  {slot.rotationEnd ? (
+                    <div className="text-[11px]" style={{ color: isSwappable ? "var(--yellow)" : "var(--ink3)" }}>
+                      {isSwappable ? (
+                        <T ja="入替可能" en="Ready" />
+                      ) : (
+                        <T ja={`残り ${remaining}日`} en={`${remaining} days left`} />
+                      )}
+                    </div>
+                  ) : (
+                    <div className="text-[11px]" style={{ color: "var(--ink4)" }}>—</div>
+                  )}
+                </div>
 
                 {/* Action */}
-                <div className="text-right">
+                <div className="shrink-0 text-right">
                   {slot.obog ? (
                     isSwappable ? (
                       <button className="btn btn-sm btn-accent">
@@ -207,13 +224,13 @@ export default function OBSlotsPage() {
         <div className="card">
           <div className="card-hd">
             <div className="card-t">
-              <span className="emoji mr-2">👤</span>
+              <Icon name="user-plus" size={16} className="mr-2" style={{ color: "var(--color-accent)" }} />
               <T ja="OB/OGを割り当て" en="Assign OB/OG" />
             </div>
           </div>
           <div className="card-bd">
             <div className="sbox">
-              <span className="shrink-0 text-sm" style={{ color: "var(--ink4)" }}>⌕</span>
+              <Icon name="search" size={14} style={{ color: "var(--ink4)" }} />
               <input
                 placeholder="社員名を検索..."
                 style={{ border: "none", outline: "none", background: "transparent", width: "100%", fontSize: "13px" }}
@@ -237,8 +254,8 @@ export default function OBSlotsPage() {
                     <T ja={emp.ja} en={emp.en} />
                   </div>
                 </div>
-                <button className="btn btn-sm btn-ghost">
-                  <T ja="選択" en="Select" />
+                <button className="btn btn-sm btn-accent">
+                  <T ja="割り当て" en="Assign" />
                 </button>
               </div>
             ))}
@@ -249,7 +266,7 @@ export default function OBSlotsPage() {
         <div className="card">
           <div className="card-hd">
             <div className="card-t">
-              <span className="emoji mr-2">📋</span>
+              <Icon name="clipboard-list" size={16} className="mr-2" style={{ color: "var(--color-accent)" }} />
               <T ja="変更履歴" en="Activity Log" />
             </div>
           </div>

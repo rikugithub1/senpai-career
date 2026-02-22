@@ -152,6 +152,7 @@
     background: var(--bg);
     line-height: 1.7;
     transition: background 0.25s, color 0.25s;
+    overflow-x: hidden;
   }
   /* dark: slightly increase weight for thin-text readability */
   [data-theme="dark"] body {
@@ -203,6 +204,49 @@
 }
 
 /* ============================================
+   COMPANY MARQUEE — infinite horizontal scroll
+   ============================================ */
+@keyframes marquee-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.marquee-container {
+  mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+}
+.marquee-track {
+  animation: marquee-scroll 40s linear infinite;
+  width: max-content;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* ============================================
+   NOTIFICATION BELL — pulse animation
+   ============================================ */
+@keyframes notification-pulse {
+  0%, 100% { transform: rotate(0deg); }
+  20% { transform: rotate(14deg); }
+  40% { transform: rotate(-10deg); }
+  60% { transform: rotate(6deg); }
+  80% { transform: rotate(-3deg); }
+}
+.notification-bell.has-unread {
+  animation: notification-pulse 0.6s ease-in-out;
+}
+.notification-dot {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 8px;
+  height: 8px;
+  background: var(--red);
+  border-radius: 50%;
+  border: 2px solid var(--nav-bg);
+}
+
+/* ============================================
    EMOJI — wrap in a tinted box so black
    glyphs stay visible in dark mode
    ============================================ */
@@ -246,7 +290,7 @@
     transform: translateY(-1px);
   }
   .btn-ghost {
-    border: 1px solid var(--color-accent);
+    border: 2px solid var(--color-accent);
     color: var(--color-accent);
     background: transparent;
   }
@@ -483,6 +527,7 @@
   }
   .input:focus {
     border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px var(--accent-soft);
   }
   .input::placeholder {
     color: var(--ink4);
@@ -494,4 +539,94 @@
     background-position: right 12px center;
     padding-right: 32px;
   }
+
+  /* --- TAG RED (destructive) --- */
+  .tag-red {
+    background: var(--red-bg);
+    color: var(--red);
+  }
+
+  /* --- AVATAR ROUND --- */
+  .av-round {
+    border-radius: 50% !important;
+  }
+
+  /* --- ICON BOX --- */
+  .icon-box {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: var(--accent-soft);
+    flex-shrink: 0;
+    color: var(--color-accent);
+  }
+  .icon-box-sm {
+    width: 28px;
+    height: 28px;
+    border-radius: 7px;
+  }
+}
+
+/* ============================================
+   SKELETON LOADERS
+   ============================================ */
+@keyframes shimmer {
+  0% { background-position: -200px 0; }
+  100% { background-position: calc(200px + 100%) 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg, var(--bg3) 0%, var(--bg2) 40%, var(--bg3) 80%);
+  background-size: 200px 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+  border-radius: 6px;
+}
+
+/* ============================================
+   TOAST NOTIFICATIONS
+   ============================================ */
+@keyframes toast-in {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+@keyframes toast-out {
+  from { transform: translateX(0); opacity: 1; }
+  to { transform: translateX(100%); opacity: 0; }
+}
+.toast-container {
+  position: fixed;
+  top: calc(var(--nav-height) + 12px);
+  right: 16px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  pointer-events: none;
+}
+.toast-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  background: var(--card);
+  border: 1px solid var(--brd);
+  border-left: 3px solid var(--green);
+  border-radius: 10px;
+  box-shadow: var(--shadow-md);
+  animation: toast-in 0.3s ease-out;
+  pointer-events: auto;
+  min-width: 280px;
+  max-width: 400px;
+}
+
+/* ============================================
+   NAV SCROLL SHADOW
+   ============================================ */
+.nav-scrolled {
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.08) !important;
+}
+[data-theme="dark"] .nav-scrolled {
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3) !important;
 }

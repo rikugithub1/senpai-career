@@ -84,7 +84,8 @@ export default function ContactPage() {
                     value={formData.type}
                     onChange={(e) => setFormData({ ...formData, type: e.target.value })}
                   >
-                    <option value="student">{t("学生", "Student")}</option>
+                    <option value="student">{t("コミュニティユーザー", "Community User")}</option>
+                    <option value="obog">{t("OB/OG", "OB/OG (Alumni)")}</option>
                     <option value="company">{t("企業", "Company")}</option>
                     <option value="other">{t("その他", "Other")}</option>
                   </select>
@@ -160,7 +161,15 @@ export default function ContactPage() {
                       <T ja="所在地" en="Address" />
                     </div>
                     <p style={{ color: "var(--ink3)" }}>
-                      <T ja="[住所を入力してください]" en="[Address to be added]" />
+                      <T ja="東京都" en="Tokyo, Japan" />
+                    </p>
+                  </div>
+                  <div className="mt-2 pt-3 border-t" style={{ borderColor: "var(--brd)" }}>
+                    <p className="text-[12px]" style={{ color: "var(--ink4)" }}>
+                      <T
+                        ja="通常24時間以内にご返信いたします"
+                        en="We typically respond within 24 hours"
+                      />
                     </p>
                   </div>
                 </div>

@@ -1,6 +1,7 @@
 import PageContainer from "../components/shared/PageContainer";
 import SectionHeader from "../components/shared/SectionHeader";
 import ImagePlaceholder from "../components/shared/ImagePlaceholder";
+import Icon from "../components/shared/Icon";
 import { T } from "../components/providers/LanguageProvider";
 import { teamMembers, companyValues } from "../data/content";
 import Link from "next/link";
@@ -89,12 +90,14 @@ export default function AboutPage() {
             </h2>
             <div className="grid gap-6 md:grid-cols-3">
               {companyValues.map((value, i) => (
-                <div key={i} className="rounded-[14px] border p-6 text-center" style={{ borderColor: "var(--brd)", background: "var(--card)" }}>
-                  <div className="mb-3 text-3xl">{value.icon}</div>
+                <div key={i} className="rounded-[14px] border p-6" style={{ borderColor: "var(--brd)", background: "var(--card)" }}>
+                  <div className="icon-box mb-3">
+                    <Icon name={value.icon} size={24} />
+                  </div>
                   <h3 className="mb-2 text-lg font-bold" style={{ fontFamily: "var(--font-display)" }}>
                     <T ja={value.ja} en={value.en} />
                   </h3>
-                  <p className="text-sm" style={{ color: "var(--ink3)" }}>
+                  <p className="text-sm leading-relaxed" style={{ color: "var(--ink3)" }}>
                     <T ja={value.jaD} en={value.enD} />
                   </p>
                 </div>

@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import PageContainer from "../components/shared/PageContainer";
 import SectionHeader from "../components/shared/SectionHeader";
 import FAQAccordion from "../components/shared/FAQAccordion";
+import Icon from "../components/shared/Icon";
 import { T } from "../components/providers/LanguageProvider";
 import { faqs, getFAQsByCategory } from "../data/content";
 import Link from "next/link";
@@ -23,10 +24,10 @@ export default function FAQPage() {
 
   const categories = [
     { id: "all", ja: "すべて", en: "All" },
-    { id: "students", ja: "学生向け", en: "Students" },
+    { id: "students", ja: "コミュニティ向け", en: "Community" },
+    { id: "obog", ja: "OB/OG向け", en: "OB/OG" },
     { id: "companies", ja: "企業向け", en: "Companies" },
-    { id: "general", ja: "一般", en: "General" },
-    { id: "technical", ja: "技術的", en: "Technical" },
+    { id: "platform", ja: "プラットフォーム", en: "Platform" },
   ];
 
   const filteredFAQs = getFAQsByCategory(activeCategory);
@@ -45,7 +46,7 @@ export default function FAQPage() {
           {/* Search Box (Placeholder) */}
           <div className="mb-6">
             <div className="sbox">
-              <span style={{ color: "var(--ink3)" }}>🔍</span>
+              <Icon name="search" size={16} style={{ color: "var(--ink3)" }} />
               <input
                 type="text"
                 placeholder="検索... / Search..."

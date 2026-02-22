@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { T } from "../providers/LanguageProvider";
 import { PricingTier } from "@/app/data/content";
+import Icon from "./Icon";
 
 interface PricingCardProps {
   tier: PricingTier;
@@ -51,7 +52,7 @@ export default function PricingCard({ tier }: PricingCardProps) {
         {tier.features.map((feature, i) => (
           <div key={i} className="flex items-start gap-2 text-[13px]">
             <span style={{ color: feature.included ? "var(--green)" : "var(--ink4)" }}>
-              {feature.included ? "✓" : "—"}
+              <Icon name={feature.included ? "check" : "minus"} size={14} />
             </span>
             <span style={{ color: feature.included ? "var(--ink)" : "var(--ink3)" }}>
               <T ja={feature.ja} en={feature.en} />

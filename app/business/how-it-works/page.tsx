@@ -1,24 +1,20 @@
 /**
- * ═══════════════════════════════════════════════════════════════
  * BUSINESS - HOW IT WORKS PAGE
- * ═══════════════════════════════════════════════════════════════
  *
  * URL: /business/how-it-works
- *
- * Business-focused "How It Works" page showing only company steps
- * with navy branding and consistent business styling
  */
 
 import PageContainer from "../../components/shared/PageContainer";
 import SectionHeader from "../../components/shared/SectionHeader";
 import ImagePlaceholder from "../../components/shared/ImagePlaceholder";
+import Icon from "../../components/shared/Icon";
 import { T } from "../../components/providers/LanguageProvider";
 import { businessDetailedSteps } from "../../data/content";
 import Link from "next/link";
 
 export default function BusinessHowItWorksPage() {
   return (
-    <div style={{ paddingTop: "var(--nav-height)" }}>
+    <div style={{ paddingTop: "var(--nav-height)" }} data-section="business">
       <PageContainer maxWidth="275">
         <section className="px-6 py-16 md:py-20">
           <div className="mx-auto max-w-275">
@@ -28,7 +24,7 @@ export default function BusinessHowItWorksPage() {
               style={{ fontFamily: "var(--font-mono)", color: "var(--color-accent)" }}
             >
               <span className="inline-block h-[1.5px] w-4" style={{ background: "var(--color-accent)" }} />
-              How It Works
+              <T ja="使い方" en="How It Works" />
             </div>
 
             <SectionHeader
@@ -58,7 +54,7 @@ export default function BusinessHowItWorksPage() {
 
                     {/* Content */}
                     <div className={i % 2 === 0 ? "order-2 md:order-none" : ""}>
-                      <div className="mb-3 text-3xl font-extrabold" style={{ fontFamily: "var(--font-display)", color: "var(--color-accent)", opacity: 0.3 }}>
+                      <div className="mb-3 text-3xl font-extrabold" style={{ fontFamily: "var(--font-display)", color: "var(--color-accent)", opacity: 0.5 }}>
                         {String(i + 1).padStart(2, "0")}
                       </div>
                       <h3 className="mb-2 text-xl font-bold" style={{ fontFamily: "var(--font-display)" }}>
@@ -95,7 +91,7 @@ export default function BusinessHowItWorksPage() {
               </h3>
               <div className="grid gap-6 md:grid-cols-3">
                 <div className="rounded-[14px] border p-6" style={{ borderColor: "var(--brd)", background: "var(--card)" }}>
-                  <div className="emoji mb-3">🤝</div>
+                  <div className="icon-box mb-3"><Icon name="handshake" size={20} /></div>
                   <div className="mb-2 text-[15px] font-bold" style={{ fontFamily: "var(--font-display)" }}>
                     <T ja="信頼関係の構築" en="Build Trust" />
                   </div>
@@ -108,20 +104,20 @@ export default function BusinessHowItWorksPage() {
                 </div>
 
                 <div className="rounded-[14px] border p-6" style={{ borderColor: "var(--brd)", background: "var(--card)" }}>
-                  <div className="emoji mb-3">🎯</div>
+                  <div className="icon-box mb-3"><Icon name="target" size={20} /></div>
                   <div className="mb-2 text-[15px] font-bold" style={{ fontFamily: "var(--font-display)" }}>
                     <T ja="ターゲット採用" en="Targeted Hiring" />
                   </div>
                   <div className="text-[13px] leading-relaxed" style={{ color: "var(--ink3)" }}>
                     <T
-                      ja="東大・慶應・早稲田の優秀な留学生に直接リーチできます。"
-                      en="Directly reach top international students from Todai, Keio, and Waseda."
+                      ja="全国の大学の優秀な留学生に直接リーチできます。"
+                      en="Directly reach top international students from universities across Japan."
                     />
                   </div>
                 </div>
 
                 <div className="rounded-[14px] border p-6" style={{ borderColor: "var(--brd)", background: "var(--card)" }}>
-                  <div className="emoji mb-3">📊</div>
+                  <div className="icon-box mb-3"><Icon name="bar-chart-3" size={20} /></div>
                   <div className="mb-2 text-[15px] font-bold" style={{ fontFamily: "var(--font-display)" }}>
                     <T ja="効率的な採用" en="Efficient Process" />
                   </div>
@@ -137,8 +133,9 @@ export default function BusinessHowItWorksPage() {
 
             {/* Video Tutorial Section (Placeholder) */}
             <div className="mb-16 text-center">
-              <h3 className="mb-4 text-2xl font-bold" style={{ fontFamily: "var(--font-display)" }}>
-                <T ja="📹 プラットフォームツアー" en="📹 Platform Tour" />
+              <h3 className="mb-4 flex items-center justify-center gap-2 text-2xl font-bold" style={{ fontFamily: "var(--font-display)" }}>
+                <Icon name="video" size={24} />
+                <T ja="プラットフォームツアー" en="Platform Tour" />
               </h3>
               <div className="mx-auto" style={{ maxWidth: "700px" }}>
                 <ImagePlaceholder
